@@ -1,9 +1,7 @@
 <template>
-    <v-container>
-        <v-container v-show="isShowCamera">
-            <v-row align="start" justify="center">
-                <video id="preview"></video>
-            </v-row>
+    <v-container fluid>
+        <v-row align="baseline" justify="center" dense no-gutters v-show="isShowCamera" >
+            <video id="preview" :aspect-ratio="16/9"></video>
 
             <v-bottom-navigation>
                 <v-btn text v-if="cameras.length === 0">No cameras found</v-btn>
@@ -27,12 +25,12 @@
                     </router-link>
                 </v-btn>
             </v-bottom-navigation>
-        </v-container>
+        </v-row>
 
-        <v-container v-if="isShowContent">
+        <v-responsive v-if="isShowContent">
             <iframe :src="scanUrl" width="500px" height="500px"></iframe>
-            <v-bottom-navigation justify="space-around" >
-                <v-btn text color="green" >
+            <v-bottom-navigation justify="space-around">
+                <v-btn text color="green">
                     {{ lastContent }}
                 </v-btn>
 
@@ -41,7 +39,7 @@
                     <span>Continue</span>
                 </v-btn>
             </v-bottom-navigation>
-        </v-container>
+        </v-responsive>
     </v-container>
 </template>
 
@@ -63,7 +61,7 @@
         }),
 
         beforeMount() {
-            if (undefined === this.scanAction ) {
+            if (undefined === this.scanAction) {
                 this.$toasted.error("Could not find Action");
                 this.$router.back();
             }
@@ -112,8 +110,11 @@
 
             showContent: function (content) {
                 this.scanner.stop();
-                console.log(content);
-                this.$store.commit('addHistory', {scanAction: this.scanAction.code, content: content, created: new Date()} );
+                this.$store.commit('addHistory', {
+                    scanAction: this.scanAction.code,
+                    content: content,
+                    created: new Date()
+                });
 
                 this.lastContent = content;
                 this.isShowContent = true;

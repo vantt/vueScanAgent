@@ -1,20 +1,19 @@
 <template>
     <v-app id="app">
-        <v-app-bar>
-            <v-btn text><router-link :to="{ name: 'Home'}"> Home</router-link></v-btn>
-            <v-btn text><router-link :to="{ name: 'History' }">History</router-link></v-btn>
-            <v-btn text><router-link :to="{ name: 'Settings' }"> Settings</router-link></v-btn>
+        <v-app-bar app>
+            <v-btn text @click="$router.push({ name: 'Home'})">Scan</v-btn>
+            <v-btn text @click="$router.push({ name: 'History'})">History</v-btn>
+            <v-btn text @click="$router.push({ name: 'Settings'})">Settings</v-btn>
         </v-app-bar>
         <!-- Sizes your content based upon application components -->
-        <v-content>
+        <v-content >
             <!-- Provides the application the proper gutter -->
-            <v-container fluid>
+            <v-container  class="fill-height" fluid>
                 <!-- If using vue-router -->
                 <router-view></router-view>
             </v-container>
         </v-content>
     </v-app>
-
 </template>
 
 <script>

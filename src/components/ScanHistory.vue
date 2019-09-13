@@ -1,7 +1,7 @@
 <template>
     <v-row align="start" justify="center">
         <v-card class="ma-3 pa-6" style="min-height:150px; width:300px" raised outlined tile
-                v-for="scan in allScanHistories">
+                v-for="(scan, index_key) in allScanHistories" :key="index_key">
 
             <v-card-title>{{ scan.content }}</v-card-title>
             <v-card-text>{{ scan.created }}</v-card-text>

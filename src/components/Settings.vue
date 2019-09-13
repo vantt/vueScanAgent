@@ -1,5 +1,10 @@
 <template>
-    <v-row align="start" justify="center">
+    <v-row align="baseline" justify="center" dense no-gutters>
+        <v-btn absolute bottom right fab dark color="pink"
+               @click="$router.push({ name: 'SettingItem', params: {code: 'new'} })">
+            <v-icon>mdi-plus</v-icon>
+        </v-btn>
+
         <v-card class="ma-3 pa-6" style="min-height:150px; width:300px" raised outlined tile
                 v-for="action in allScanActions"
                 :key="action.code">
@@ -21,23 +26,7 @@
             </v-card-actions>
         </v-card>
 
-        <v-card class="ma-3 pa-6" style="min-height:150px; width:300px" raised outlined tile>
-            <v-card-title>NEW ACTION</v-card-title>
-            <v-card-text>http://sdfsdf</v-card-text>
-            <v-card-actions>
-                <v-btn text outlined>
-                    <v-icon>mdi-plus</v-icon>
-                    SCAN
-                </v-btn>
-            </v-card-actions>
-        </v-card>
-        <v-fab-transition>
-            <v-btn fab absolute bottom right dark color="pink">
-                <router-link :to="{ name: 'SettingItem', params: {code: 'new'} }">
-                    <v-icon>mdi-plus</v-icon>
-                </router-link>
-            </v-btn>
-        </v-fab-transition>
+
     </v-row>
 </template>
 
