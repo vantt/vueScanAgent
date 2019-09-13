@@ -1,0 +1,2 @@
+# vueScanAgent
+BarCode Scanning Agent
