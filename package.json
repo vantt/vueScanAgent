@@ -9,10 +9,15 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "instascan": "github:Alexander1984z/instascan#snyk-upgrade-29cee0455d838185d41dd3b09a18312c",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vue-toast-notification": "0.0.3",
+    "vue-toasted": "^1.1.27",
+    "vuetify": "^2.0.0",
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
@@ -25,6 +30,11 @@
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
     "prettier": "^1.18.2",
-    "vue-template-compiler": "^2.6.10"
+    "sass": "^1.17.4",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-vuetify": "^0.6.3",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.2.2",
+    "webrtc-adapter": "^7.3.0"
   }
 }
