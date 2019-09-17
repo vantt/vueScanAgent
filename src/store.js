@@ -11,16 +11,16 @@ export default new Vuex.Store({
         ],
 
         scanHistories: [
-          {scanAction: "code", content: "Search", created:""},
+            {scanAction: "code", content: "Search", created: ""},
         ]
     },
 
     getters: {
-        allScanHistories:(state) => {
+        allScanHistories: (state) => {
             return state.scanHistories;
         },
 
-        allScanActions:(state) => {
+        allScanActions: (state) => {
             return state.scanActions;
         },
 
@@ -34,21 +34,31 @@ export default new Vuex.Store({
             state.scanActions = state.scanActions.filter(action => action.code !== payload.code);
         },
 
+        copyScanAction(state, payload) {
+            let index = state.scanActions.findIndex(action => action.code === payload.code);
+
+            if (index > -1) {
+                let newAction = {...state.scanActions[index], ...{code: payload.newCode}};
+                state.scanActions.push(newAction)
+            }
+        },
+
         updateScanAction(state, payload) {
             // find old action
-            let index = state.scanActions.findIndex(action => action.code === payload.code);
+            let index = state.scanActions.findIndex(action => action.code === payload.originalData.code);
+            let action = {code: payload.code, label: payload.label, link: payload.link};
 
             if (index !== -1) {
                 // update
-                state.scanActions[index] = payload;
+                state.scanActions[index] = action;
             } else {
                 // add new
-                state.scanActions.push(payload);
+                state.scanActions.push(action);
             }
         },
 
         addHistory(state, scan) {
-          state.scanHistories.unshift(scan);
+            state.scanHistories.unshift(scan);
         }
     },
 

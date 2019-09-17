@@ -35,7 +35,7 @@ export default new Router({
             component: Settings
         },
         {
-            path: "/setting/:code",
+            path: "/setting/:code/:actionType",
             name: "SettingItem",
             component: SettingItem,
         },

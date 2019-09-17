@@ -47,34 +47,68 @@
         name: "SettingItem",
 
         data: () => ({
-            form: new FormData(),
+            form: null,
+            actionCode: "",
+            actionType: "",
         }),
 
+        beforeRouteUpdate (to, from, next) {
+            // just use `this`
+            this.actionCode = to.params.code;
+            this.actionType = to.params.actionType;
+            this.fetchData();
+            next()
+        },
+
+        beforeMount() {
+            this.actionCode = this.$route.params.code;
+            this.actionType = this.$route.params.actionType;
+
+            switch (this.actionType) {
+                case "delete":
+                    this.performDelete();
+                    return;
+                case "copy":
+                    this.performCopy();
+                    return;
+            }
+        },
+
         mounted() {
-            this.form = new FormData(this.editingAction)
+            this.form = new FormData(this.currentSetting);
         },
 
         methods: {
-            performUpdate() {
-                this.$store.commit('updateScanAction', {code: this.form.code, label: this.form.label, link: this.form.link});
-                this.$router.push("/settings");
+            fetchData () {
+                this.form = new FormData(this.currentSetting);
             },
 
             performDelete() {
-                this.$store.commit('removeScanAction', {code: this.form.code, label: this.form.label, link: this.form.link});
+                this.$store.commit('removeScanAction', {code: this.actionCode});
+                this.$router.push("/settings");
+            },
+
+            performCopy() {
+                let newCode = 'Copy_' + this.actionCode + '_' + Math.random();
+
+                this.$store.commit('copyScanAction', { code: this.actionCode, newCode: newCode }) ;
+                this.$router.push({ name: "SettingItem", params: { code: newCode, actionType: 'edit' } });
+            },
+
+            performUpdate() {
+                this.$store.commit('updateScanAction', this.form);
                 this.$router.push("/settings");
             },
         },
 
         computed: {
-            editingAction() {
-                let actionCode = this.$route.params.code;
-                let action = this.$store.getters.getScanActionByCode(actionCode);
+            currentSetting() {
+                let action = this.$store.getters.getScanActionByCode(this.actionCode);
 
                 if (undefined === action) {
-                    action = { code: actionCode, label: "", link: "http://"};
+                    action = {code: this.actionCode, label: "", link: "http://"};
                 }
-                console.log(action);
+
                 return action;
             },
 

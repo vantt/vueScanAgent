@@ -12,7 +12,7 @@
                             </span>
                         <span v-if="camera.id != activeCameraId" :title="formatName(camera.name)">
                                 <a @click.stop="selectCamera(camera)">{{ formatName(camera.name) }}</a>
-                            </span>
+                        </span>
                     </li>
                 </v-btn>
 
