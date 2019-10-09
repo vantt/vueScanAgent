@@ -29,3 +29,7 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 https://www.vuemastery.com/courses/real-world-vue-js/vue-cli/
 js.ipfs.com
+
+
+### Deploy to github page:
+https://cli.vuejs.org/guide/deployment.html#github-pages

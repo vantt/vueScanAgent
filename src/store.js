@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         scanActions: [
-            {code: "search", label: "Search", link: "https://www.google.com/%scanvalue%"},
+            {code: "g_product_search", label: "Google Product Search", link: "https://www.google.com/search?tbm=shop&q=%scanValue%", autoRescan: false},
+            {code: "checkin", label: "Checkin", link: "https://192.168.68.171/admin/abc/key=%scanValue%&activityName=checkin", autoRescan: true},
         ],
 
         scanHistories: [
@@ -46,7 +47,7 @@ export default new Vuex.Store({
         updateScanAction(state, payload) {
             // find old action
             let index = state.scanActions.findIndex(action => action.code === payload.originalData.code);
-            let action = {code: payload.code, label: payload.label, link: payload.link};
+            let action = {code: payload.code, label: payload.label, link: payload.link, autoRescan: payload.autoRescan};
 
             if (index !== -1) {
                 // update

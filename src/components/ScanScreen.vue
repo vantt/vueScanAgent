@@ -1,6 +1,6 @@
 <template>
     <v-container fluid>
-        <v-row align="baseline" justify="center" dense no-gutters v-show="isShowCamera" >
+        <v-row justify="center" dense no-gutters v-show="isShowCamera" >
             <video id="preview" :aspect-ratio="16/9"></video>
 
             <v-bottom-navigation>
@@ -70,7 +70,7 @@
         mounted() {
             let self = this;
 
-            self.audio = new Audio('/public/scanner/beep.mp3');
+            self.audio = new Audio(require('@/assets/beep.mp3'));
             self.audio.load();
 
             self.scanner = new Instascan.Scanner({video: document.getElementById('preview'), scanPeriod: 2});
@@ -120,11 +120,17 @@
                 this.isShowContent = true;
                 this.isShowCamera = false;
 
-                this.scanUrl = this.scanAction.link.replace(/%scanValue%/, encodeURIComponent(content))
+                this.scanUrl = this.scanAction.link.replace(/%scanValue%/, encodeURIComponent(content));
+
+                if (true === this.scanAction.autoRescan) {
+                    setTimeout(this.activeCamera, 3000);
+                }
             }
         },
 
         computed: {
+
+
             scanAction() {
                 return this.$store.getters.getScanActionByCode(this.$route.params.actionCode);
             }

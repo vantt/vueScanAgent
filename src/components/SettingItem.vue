@@ -19,6 +19,8 @@
                 required
         ></v-text-field>
 
+        <v-switch v-model="form.autoRescan" :label="`Auto Rescan: ${form.autoRescan}`"></v-switch>
+
         <v-btn
                 color="success"
                 class="mr-4"
