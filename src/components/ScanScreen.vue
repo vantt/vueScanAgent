@@ -58,7 +58,14 @@
             lastContent: "",
             modalContent: "",
             scanUrl: "",
+            scanner: null,
         }),
+
+        beforeRouteLeave (to, from, next) {
+            // stop camera when leaving this route
+            this.scanner.stop();
+            next();
+        },
 
         beforeMount() {
             if (undefined === this.scanAction) {
@@ -129,8 +136,6 @@
         },
 
         computed: {
-
-
             scanAction() {
                 return this.$store.getters.getScanActionByCode(this.$route.params.actionCode);
             }

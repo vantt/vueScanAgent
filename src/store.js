@@ -7,8 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         scanActions: [
-            {code: "g_product_search", label: "Google Product Search", link: "https://www.google.com/search?tbm=shop&q=%scanValue%", autoRescan: false},
-            {code: "checkin", label: "Checkin", link: "https://192.168.68.171/admin/abc/key=%scanValue%&activityName=checkin", autoRescan: true},
+            {code: "checkin", label: "Checkin", link: "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn", autoRescan: true},
         ],
 
         scanHistories: [

@@ -7,6 +7,7 @@ import ScanScreen from "./components/ScanScreen";
 import Settings from "./components/Settings";
 import SettingItem from "./components/SettingItem";
 import ScanHistory from "./components/ScanHistory";
+import SettingExport from "./components/SettingExport";
 
 Vue.use(Router);
 
@@ -38,6 +39,11 @@ export default new Router({
             path: "/setting/:code/:actionType",
             name: "SettingItem",
             component: SettingItem,
+        },
+        {
+            path: "/settings/export",
+            name: "SettingExport",
+            component: SettingExport
         },
         {
             path: "/about",

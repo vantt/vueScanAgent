@@ -10,6 +10,7 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "instascan": "github:Alexander1984z/instascan#snyk-upgrade-29cee0455d838185d41dd3b09a18312c",
+    "ipfs": "^0.38.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",

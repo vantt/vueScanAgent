@@ -33,3 +33,6 @@ js.ipfs.com
 
 ### Deploy to github page:
 https://cli.vuejs.org/guide/deployment.html#github-pages
+
+### Data transfer
+https://github.com/ipfs/js-ipfs
