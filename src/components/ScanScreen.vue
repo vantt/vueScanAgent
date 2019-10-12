@@ -1,9 +1,11 @@
 <template>
     <v-container fluid>
-        <v-row justify="center" dense no-gutters v-show="isShowCamera" >
-            <video id="preview" :aspect-ratio="16/9"></video>
+        <v-row id="preview-container" justify="center" dense no-gutters v-show="isShowCamera" >
+            <v-responsive :aspect-ratio="16/9" align="center">
+                <video id="preview"></video>
+            </v-responsive>
 
-            <v-bottom-navigation>
+            <v-bottom-navigation fixed >
                 <v-btn text v-if="cameras.length === 0">No cameras found</v-btn>
                 <v-btn text v-if="cameras.length">
                     <li v-for="camera in cameras">
@@ -27,9 +29,12 @@
             </v-bottom-navigation>
         </v-row>
 
-        <v-responsive v-if="isShowContent">
-            <iframe :src="scanUrl" width="500px" height="500px"></iframe>
-            <v-bottom-navigation justify="space-around">
+        <v-row justify="center" dense no-gutters v-if="isShowContent">
+            <v-responsive :aspect-ratio="9/16" max-width="500px">
+                <iframe :src="scanUrl" width="100%" height="100%"></iframe>
+            </v-responsive>
+
+            <v-bottom-navigation fixed>
                 <v-btn text color="green">
                     {{ lastContent }}
                 </v-btn>
@@ -39,7 +44,7 @@
                     <span>Continue</span>
                 </v-btn>
             </v-bottom-navigation>
-        </v-responsive>
+        </v-row>
     </v-container>
 </template>
 
@@ -130,7 +135,7 @@
                 this.scanUrl = this.scanAction.link.replace(/%scanValue%/, encodeURIComponent(content));
 
                 if (true === this.scanAction.autoRescan) {
-                    setTimeout(this.activeCamera, 3000);
+                    setTimeout(this.activeCamera, 5000);
                 }
             }
         },
