@@ -1,11 +1,11 @@
 <template>
     <v-container fluid>
-        <v-row id="preview-container" justify="center" dense no-gutters v-show="isShowCamera" >
+        <v-row id="preview-container" justify="center" dense no-gutters v-show="isShowCamera">
             <v-responsive :aspect-ratio="16/9" align="center">
                 <video id="preview"></video>
             </v-responsive>
 
-            <v-bottom-navigation fixed >
+            <v-bottom-navigation fixed>
                 <v-btn text v-if="cameras.length === 0">No cameras found</v-btn>
                 <v-btn text v-if="cameras.length">
                     <li v-for="camera in cameras">
@@ -13,7 +13,7 @@
                                 {{ formatName(camera.name) }}
                             </span>
                         <span v-if="camera.id != activeCameraId" :title="formatName(camera.name)">
-                                <a @click.stop="selectCamera(camera)">{{ formatName(camera.name) }}</a>
+                                <a @click.stop="activeCamera(camera)">{{ formatName(camera.name) }}</a>
                         </span>
                     </li>
                 </v-btn>
@@ -39,7 +39,7 @@
                     {{ lastContent }}
                 </v-btn>
 
-                <v-btn text @click="activeCamera()">
+                <v-btn text @click="startScan()">
                     <v-icon>mdi-qrcode</v-icon>
                     <span>Continue</span>
                 </v-btn>
@@ -66,7 +66,7 @@
             scanner: null,
         }),
 
-        beforeRouteLeave (to, from, next) {
+        beforeRouteLeave(to, from, next) {
             // stop camera when leaving this route
             this.scanner.stop();
             next();
@@ -94,7 +94,7 @@
             Instascan.Camera.getCameras().then(function (cameras) {
                 if (cameras.length > 0) {
                     self.cameras = cameras;
-                    self.selectCamera(cameras[0]);
+                    self.autoSelectCamera(cameras);
                 } else {
                     console.error('No cameras found.');
                 }
@@ -108,12 +108,28 @@
                 return name || '(unknown)';
             },
 
-            selectCamera: function (camera) {
+            autoSelectCamera: function (cameras) {
+                if (cameras.length > 1) {
+                    cameras.forEach(camera => {
+                        if (camera.name.toLowerCase().indexOf('back') > -1) {
+                            this.activeCamera(camera);
+                            return;
+                        }
+                    })
+                } else {
+                    this.activeCamera(cameras[0]);
+                    return;
+                }
+
+                this.activeCamera(cameras[0]);
+            },
+
+            activeCamera: function (camera) {
                 this.activeCameraId = camera.id;
                 this.scanner.start(camera);
             },
 
-            activeCamera: function () {
+            startScan: function () {
                 this.isShowContent = false;
                 this.isShowCamera = true;
 
@@ -135,7 +151,7 @@
                 this.scanUrl = this.scanAction.link.replace(/%scanValue%/, encodeURIComponent(content));
 
                 if (true === this.scanAction.autoRescan) {
-                    setTimeout(this.activeCamera, 5000);
+                    setTimeout(this.startScan, 5000);
                 }
             }
         },
