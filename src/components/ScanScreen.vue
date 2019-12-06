@@ -31,7 +31,7 @@
 
         <v-row justify="center" dense no-gutters v-if="isShowContent">
             <v-responsive :aspect-ratio="9/16" max-width="500px">
-                <iframe :src="scanUrl" width="100%" height="100%"></iframe>
+                <iframe :src="scanUrl" width="100%" height="100%" style="overflow:hidden" scrolling="no"></iframe>
             </v-responsive>
 
             <v-bottom-navigation fixed>

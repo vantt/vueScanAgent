@@ -16,6 +16,10 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
         {
+            path: "",
+            component: Dashboard
+        },
+        {
             path: "/",
             name: "Home",
             component: Dashboard
