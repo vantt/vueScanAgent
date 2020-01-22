@@ -7,6 +7,7 @@ import ScanScreen from "./components/ScanScreen";
 import Settings from "./components/Settings";
 import SettingItem from "./components/SettingItem";
 import ScanHistory from "./components/ScanHistory";
+import SettingCapture from "./components/SettingCapture";
 import SettingExport from "./components/SettingExport";
 
 Vue.use(Router);
@@ -17,10 +18,10 @@ export default new Router({
     routes: [
         {
             path: "",
-            component: Dashboard
+            redirect: "/scan"
         },
         {
-            path: "/",
+            path: "/scan",
             name: "Home",
             component: Dashboard
         },
@@ -35,19 +36,24 @@ export default new Router({
             component: ScanHistory,
         },
         {
-            path: "/settings",
-            name: "Settings",
-            component: Settings
-        },
-        {
             path: "/setting/:code/:actionType",
             name: "SettingItem",
-            component: SettingItem,
+            component: SettingItem
         },
         {
-            path: "/settings/export",
+            path: "/settings/sync-open",
+            name: "SettingCapture",
+            component: SettingCapture
+        },
+        {
+            path: "/settings/sync-create",
             name: "SettingExport",
             component: SettingExport
+        },
+        {
+            path: "/settings/:action?/:randomize?",
+            name: "Settings",
+            component: Settings
         },
         {
             path: "/about",

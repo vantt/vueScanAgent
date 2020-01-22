@@ -90,3 +90,6 @@ Todo: configuration transferring between devices
 - https://js.ipfs.com
 - https://github.com/ipfs/js-ipfs
 - https://www.vuemastery.com/courses/real-world-vue-js/vue-cli/
+
+  Transfer data using Animated QRCode
+- https://github.com/maxg0/displaysocket.js
