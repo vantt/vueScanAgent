@@ -50,7 +50,6 @@
 
 <script>
     import Instascan from "instascan";
-    import ipfsClient from "../core/ipfs";
     import JSONH from 'jsonh';
 
     export default {
@@ -139,7 +138,6 @@
             startScan: function () {
                 this.isShowContent = false;
                 this.isShowCamera = true;
-
                 this.scanner.start(this.cameras[this.activeCameraId]);
             },
 
