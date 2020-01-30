@@ -41,12 +41,12 @@ export default new Router({
             component: SettingItem
         },
         {
-            path: "/settings/sync-open",
+            path: "/settings/sync-import",
             name: "SettingCapture",
             component: SettingCapture
         },
         {
-            path: "/settings/sync-create",
+            path: "/settings/sync-expose",
             name: "SettingExport",
             component: SettingExport
         },

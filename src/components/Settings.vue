@@ -2,16 +2,6 @@
     <v-container fluid>
         <v-col>
             <v-row align="start" justify="center" dense no-gutters>
-                <v-card class="ma-2 pa-0" style="min-height:200px; width:250px" raised outlined tile>
-                    <v-card-text align="center"><qrcode-vue :value="exportAddress" size="145" level="H"></qrcode-vue></v-card-text>
-                    <v-card-actions>
-                        <v-btn class="ma-1" color="blue" dark
-                               :to="{ name: 'SettingCapture', params: { } }">
-                            <v-icon dark left>mdi-content-duplicate</v-icon>
-                            Capture Settings
-                        </v-btn>
-                    </v-card-actions>
-                </v-card>
                 <v-card class="ma-2 pa-0" style="min-height:200px; width:300px" raised outlined tile
                         v-for="action in allScanActions"
                         :key="action.code">
@@ -60,7 +50,7 @@
                 >
                     <v-icon>mdi-cast</v-icon>
                 </v-btn>
-                <v-btn
+                <v-btn :to="{ name: 'SettingCapture', params: {} }"
                         fab
                         dark
                         small
@@ -68,6 +58,7 @@
                 >
                     <v-icon>mdi-content-duplicate</v-icon>
                 </v-btn>
+
                 <v-btn :to="{ name: 'SettingItem', params: {code: '???', actionType:'new'} }"
                         fab
                         dark
@@ -86,12 +77,11 @@
 
 <script>
     import {mapGetters} from 'vuex';
-    import QrcodeVue from 'qrcode.vue';
+
     export default {
         name: "Settings",
         data: () => ({
             randomSeed: Math.random().toString(36).substr(2, 9),
-            exportAddress: 'http://localhost:8080/settings/export',
         }),
 
         computed: {
@@ -112,11 +102,7 @@
                 this.randomSeed = Math.random().toString(36).substr(2, 9);
                 this.$http.get(process.env.BASE_URL + '/config/defaultScanActions.json').then((response) => this.$store.commit('replaceScanActions', response.data));
             }
-        },
-
-        components: {
-            QrcodeVue,
-        },
+        }
     }
 </script>
 

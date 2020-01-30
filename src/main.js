@@ -7,7 +7,9 @@ import vuetify from "./plugins/vuetify";
 import Toasted from "vue-toasted";
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueQrcode from '@chenfengyuan/vue-qrcode';
 
+Vue.component(VueQrcode.name, VueQrcode);
 Vue.use(VueAxios, axios);
 Vue.use(Toasted, { position: "top-center" });
 Vue.config.productionTip = false;

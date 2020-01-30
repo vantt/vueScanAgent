@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import defaultScanActions from "@/config/defaultScanActions.json";
-import replicator from "./core/replicator";
+//import replicator from "./core/replicator";
 
 Vue.use(Vuex);
 
@@ -90,43 +90,43 @@ export function createStore() {
         },
 
         actions: {
-            async connectDb({commit}, ipfsAddress) {
-                return new Promise((resolve, reject) => {
-                    replicator.connect(ipfsAddress).then((result) => {
-                        if (result) {
-                            commit("setIpfsAddress", ipfsAddress);
-                        }
-
-                        resolve(result);
-                    });
-                });
-            },
-
-            async createDb({commit}, dbName) {
-                return new Promise((resolve, reject) => {
-                    replicator.createDb(dbName).then((dbAddress) => {
-                        if (dbAddress !== null) {
-                            commit("setDbAddress", dbAddress);
-                        }
-
-                        resolve(dbAddress);
-                    });
-                });
-            },
-
-            async openDb({commit}, dbAddress) {
-                return new Promise((resolve, reject) => {
-                    replicator.openDb(dbAddress).then((result) => {
-                        commit("setDbAddress", dbAddress);
-                        this.startSync({commit});
-                        resolve(dbAddress);
-                    });
-                });
-            },
-
-            startSync({commit}, syncAddress) {
-                replicator.scanActions();
-            },
+            // async connectDb({commit}, ipfsAddress) {
+            //     return new Promise((resolve, reject) => {
+            //         replicator.connect(ipfsAddress).then((result) => {
+            //             if (result) {
+            //                 commit("setIpfsAddress", ipfsAddress);
+            //             }
+            //
+            //             resolve(result);
+            //         });
+            //     });
+            // },
+            //
+            // async createDb({commit}, dbName) {
+            //     return new Promise((resolve, reject) => {
+            //         replicator.createDb(dbName).then((dbAddress) => {
+            //             if (dbAddress !== null) {
+            //                 commit("setDbAddress", dbAddress);
+            //             }
+            //
+            //             resolve(dbAddress);
+            //         });
+            //     });
+            // },
+            //
+            // async openDb({commit}, dbAddress) {
+            //     return new Promise((resolve, reject) => {
+            //         replicator.openDb(dbAddress).then((result) => {
+            //             commit("setDbAddress", dbAddress);
+            //             this.startSync({commit});
+            //             resolve(dbAddress);
+            //         });
+            //     });
+            // },
+            //
+            // startSync({commit}, syncAddress) {
+            //     replicator.scanActions();
+            // },
         },
 
         plugins: [createPersistedState({key: "scanAgent"})]

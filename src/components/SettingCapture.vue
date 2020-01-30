@@ -50,6 +50,8 @@
 
 <script>
     import Instascan from "instascan";
+    import ipfsClient from "../core/ipfs";
+    import JSONH from 'jsonh';
 
     export default {
         name: "SettingCapture",
@@ -141,14 +143,12 @@
                 this.scanner.start(this.cameras[this.activeCameraId]);
             },
 
-            showContent: function (content) {
-                this.axios.get(content).then((response) => {
-                    console.log(response.data);
-                })
-
-            }
-
-
+             showContent: function (content) {
+                 const data = JSONH.parse(content);
+                 this.$store.commit('replaceScanActions', data);
+                 console.log(data);
+                 this.$router.push({ name: "Settings", params: { } });
+            },
         },
 
         computed: {
