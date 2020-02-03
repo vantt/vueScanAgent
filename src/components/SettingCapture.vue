@@ -90,7 +90,7 @@
             self.audio = new Audio(require('@/assets/beep.mp3'));
             self.audio.load();
 
-            self.scanner = new Instascan.Scanner({video: document.getElementById('preview'), scanPeriod: 2});
+            self.scanner = new Instascan.Scanner({video: document.getElementById('preview'), scanPeriod: 1});
             self.scanner.addListener('scan', function (content, image) {
                 self.audio.play();
                 self.showContent(content);

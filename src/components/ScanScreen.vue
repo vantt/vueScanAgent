@@ -1,32 +1,7 @@
 <template>
     <v-container fluid>
         <v-row id="preview-container" justify="center" dense no-gutters v-show="isShowCamera">
-            <v-responsive :aspect-ratio="16/9" align="center">
-                <video id="preview"></video>
-            </v-responsive>
-
-            <v-bottom-navigation fixed>
-                <v-btn text v-if="cameras.length === 0">No cameras found</v-btn>
-                <v-btn text v-if="cameras.length">
-                    <li v-for="camera in cameras">
-                            <span v-if="camera.id == activeCameraId" :title="formatName(camera.name)" class="active">
-                                {{ formatName(camera.name) }}
-                            </span>
-                        <span v-if="camera.id != activeCameraId" :title="formatName(camera.name)">
-                                <a @click.stop="activeCamera(camera)">{{ formatName(camera.name) }}</a>
-                        </span>
-                    </li>
-                </v-btn>
-
-                <div class="flex-grow-1"></div>
-
-                <v-btn text>
-                    <router-link :to="{ name: 'Home' }">
-                        <span>Home</span>
-                        <v-icon>mdi-home</v-icon>
-                    </router-link>
-                </v-btn>
-            </v-bottom-navigation>
+                <ScanView @onDecode="showContent" :showCamera="isShowCamera" />
         </v-row>
 
         <v-row justify="center" dense no-gutters v-if="isShowContent">
@@ -49,26 +24,24 @@
 </template>
 
 <script>
-    import Instascan from "instascan";
+
+    import ScanView from "./InstascanView";
+    //import ScanView from "./VueQrcodeReaderView";
 
     export default {
         name: "ScanScreen",
+        components: { ScanView },
+
         data: () => ({
-            cameras: [],
-            activeCameraId: null,
-            scans: [],
-            settings: "https://192.168.68.171:8443/admin/qr-check/abc?key=%qrdata%&activityName=checkin&key1=val1&key2=val2",
             isShowCamera: true,
             isShowContent: false,
             lastContent: "",
-            modalContent: "",
             scanUrl: "",
-            scanner: null,
         }),
 
         beforeRouteLeave(to, from, next) {
             // stop camera when leaving this route
-            this.scanner.stop();
+            this.isShowCamera = false;
             next();
         },
 
@@ -79,74 +52,22 @@
             }
         },
 
-        mounted() {
-            let self = this;
-
-            self.audio = new Audio(require('@/assets/beep.mp3'));
-            self.audio.load();
-
-            self.scanner = new Instascan.Scanner({video: document.getElementById('preview'), scanPeriod: 2});
-            self.scanner.addListener('scan', function (content, image) {
-                self.audio.play();
-                self.showContent(content);
-            });
-
-            Instascan.Camera.getCameras().then(function (cameras) {
-                if (cameras.length > 0) {
-                    self.cameras = cameras;
-                    self.autoSelectCamera(cameras);
-                } else {
-                    console.error('No cameras found.');
-                }
-            }).catch(function (e) {
-                console.error(e);
-            });
-        },
-
         methods: {
-            formatName: function (name) {
-                return name || '(unknown)';
-            },
-
-            autoSelectCamera: function (cameras) {
-                if (cameras.length > 1) {
-                    cameras.forEach(camera => {
-                        if (camera.name.toLowerCase().indexOf('back') > -1) {
-                            this.activeCamera(camera);
-                            return;
-                        }
-                    })
-                } else {
-                    this.activeCamera(cameras[0]);
-                    return;
-                }
-
-                this.activeCamera(cameras[0]);
-            },
-
-            activeCamera: function (camera) {
-                this.activeCameraId = camera.id;
-                this.scanner.start(camera);
-            },
-
             startScan: function () {
                 this.isShowContent = false;
                 this.isShowCamera = true;
-
-                this.scanner.start(this.cameras[this.activeCameraId]);
             },
 
             showContent: function (content) {
-                this.scanner.stop();
+                this.lastContent = content;
+                this.isShowContent = true;
+                this.isShowCamera = false;
+
                 this.$store.commit('addHistory', {
                     scanAction: this.scanAction.code,
                     content: content,
                     created: new Date()
                 });
-
-                this.lastContent = content;
-                this.isShowContent = true;
-                this.isShowCamera = false;
 
                 this.scanUrl = this.scanAction.link.replace(/%scanValue%/, encodeURIComponent(content));
 

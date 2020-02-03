@@ -1,44 +1,50 @@
 <template>
+    <v-container fluid>
 
-    <v-form ref="form">
-        <v-text-field
-                v-model="form.code"
-                label="Activity Code"
-                required
-        ></v-text-field>
+            <v-row align="start" justify="center" dense no-gutters>
+                <v-form ref="form">
+                    <v-text-field
+                            v-model="form.code"
+                            label="Activity Code"
+                            outlined
+                            required
+                    ></v-text-field>
 
-        <v-text-field
-                v-model="form.label"
-                label="Label"
-                required
-        ></v-text-field>
+                    <v-text-field
+                            v-model="form.label"
+                            label="Label"
+                            outlined
+                            required
+                    ></v-text-field>
 
-        <v-text-field
-                v-model="form.link"
-                label="Link"
-                required
-        ></v-text-field>
+                    <v-textarea
+                            v-model="form.link"
+                            label="Link"
+                            outlined
+                            required
+                    ></v-textarea>
 
-        <v-switch v-model="form.autoRescan" :label="`Auto Rescan: ${form.autoRescan}`"></v-switch>
+                    <v-switch v-model="form.autoRescan" :label="`Auto Rescan: ${form.autoRescan}`"></v-switch>
 
-        <v-btn
-                color="success"
-                class="mr-4"
-                @click="performUpdate"
-        >
-            Save
-        </v-btn>
+                    <v-btn
+                            color="success"
+                            class="mr-4"
+                            @click="performUpdate"
+                    >
+                        Save
+                    </v-btn>
 
-        <v-btn
-                color="error"
-                class="mr-4"
-                @click="performDelete"
-        >
-            Delete
-        </v-btn>
+                    <v-btn
+                            color="error"
+                            class="mr-4"
+                            @click="performDelete"
+                    >
+                        Delete
+                    </v-btn>
 
-    </v-form>
-
+                </v-form>
+            </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -54,7 +60,7 @@
             actionType: "",
         }),
 
-        beforeRouteUpdate (to, from, next) {
+        beforeRouteUpdate(to, from, next) {
             // just use `this`
             this.actionCode = to.params.code;
             this.actionType = to.params.actionType;
@@ -81,7 +87,7 @@
         },
 
         methods: {
-            fetchData () {
+            fetchData() {
                 this.form = new FormData(this.currentSetting);
             },
 
@@ -93,8 +99,8 @@
             performCopy() {
                 let newCode = 'Copy_' + this.actionCode + '_' + Math.random();
 
-                this.$store.commit('copyScanAction', { code: this.actionCode, newCode: newCode }) ;
-                this.$router.push({ name: "SettingItem", params: { code: newCode, actionType: 'edit' } });
+                this.$store.commit('copyScanAction', {code: this.actionCode, newCode: newCode});
+                this.$router.push({name: "SettingItem", params: {code: newCode, actionType: 'edit'}});
             },
 
             performUpdate() {

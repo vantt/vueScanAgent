@@ -85,6 +85,13 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Deploy to github page
 https://cli.vuejs.org/guide/deployment.html#github-pages
 
+### References
+## About QR Code
+https://www.qrcode.com/en/codes/microqr.html
+
+https://github.com/schmich/instascan
+https://github.com/kig/zxing-cpp-emscripten
+
 ### Data transfer
 Todo: configuration transferring between devices
 - https://js.ipfs.com
