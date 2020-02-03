@@ -49,7 +49,6 @@
 
         mounted() {
             let self = this;
-
             const isMobile = this.isMobile();
 
             self.audio = new Audio(require('@/assets/beep.mp3'));
