@@ -13,7 +13,7 @@
     "core-js": "^2.6.11",
     "http": "0.0.0",
     "http2": "^3.3.7",
-    "instascan": "github:Alexander1984z/instascan#snyk-upgrade-29cee0455d838185d41dd3b09a18312c",
+    "instascan": "github:vantt/instascan#1.1.1",
     "jsonh": "0.0.6",
     "qrcode": "^1.4.4",
     "register-service-worker": "^1.6.2",

@@ -56,8 +56,8 @@
 
             self.scanner = new Instascan.Scanner({
                 video: document.getElementById('preview'),
+                mirror: !isMobile,
                 scanPeriod: 1,
-                mirror: !isMobile
             });
 
             self.scanner.addListener('scan', (content, image) => {

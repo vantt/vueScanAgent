@@ -79,6 +79,11 @@ npm run lint
 ```
 
 ## Development References
+### Modified instascan version
+npm install --save Alexander1984z/instascan#snyk-upgrade-29cee0455d838185d41dd3b09a18312c
+npm install --save vantt/instascan#1.1.1
+
+
 ### Customize Vuejs configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
@@ -89,8 +94,11 @@ https://cli.vuejs.org/guide/deployment.html#github-pages
 ## About QR Code
 https://www.qrcode.com/en/codes/microqr.html
 
+## Scanners
 https://github.com/schmich/instascan
+https://github.com/nimiq/qr-scanner
 https://github.com/kig/zxing-cpp-emscripten
+
 
 ### Data transfer
 Todo: configuration transferring between devices
