@@ -7,7 +7,7 @@
                         :key="action.code">
                     <v-card-title>{{ action.label }}</v-card-title>
                     <v-card-subtitle>[ {{ action.code }} ]</v-card-subtitle>
-                    <v-card-text>{{ action.link }}</v-card-text>
+                    <v-card-text style="height: 70px">{{ action.link }}</v-card-text>
                     <v-card-actions absolute bottom>
                         <v-btn class="ma-1" color="blue" outlined
                                :to="{ name: 'SettingItem', params: { code: action.code, actionType:'edit' } }">
