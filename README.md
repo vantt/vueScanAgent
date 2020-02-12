@@ -94,11 +94,18 @@ https://cli.vuejs.org/guide/deployment.html#github-pages
 ## About QR Code
 https://www.qrcode.com/en/codes/microqr.html
 
+## Js Decoder Libraries
+https://github.com/cozmo/jsQR
+https://github.com/kig/zxing-cpp-emscripten
+https://github.com/zxing-js/library
+https://github.com/zxing-js/browser
+https://github.com/dlbeer/quirc
+http://boofcv.org/index.php?title=Tutorial_QRCodes
+
 ## Scanners
 https://github.com/schmich/instascan
 https://github.com/nimiq/qr-scanner
-https://github.com/kig/zxing-cpp-emscripten
-
+https://github.com/dynamsoft-dbr/javascript-barcode
 
 ### Data transfer
 Todo: configuration transferring between devices

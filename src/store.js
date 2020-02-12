@@ -25,7 +25,7 @@ export function createStore() {
                 return state.scanActions;
             },
 
-            getScanActionByCode: state => code => {
+            getScanActionByCode: state => (code) => {
                 return state.scanActions.find(action => action.code === code);
             }
         },

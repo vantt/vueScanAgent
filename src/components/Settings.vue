@@ -2,26 +2,27 @@
     <v-container fluid>
         <v-col>
             <v-row align="start" justify="center" dense no-gutters>
-                <v-card class="ma-2 pa-0" style="min-height:200px; width:300px" raised outlined tile
+                <v-card class="ma-2 pa-0" style="min-height:230px; width:400px" raised elevation="1"
                         v-for="action in allScanActions"
                         :key="action.code">
                     <v-card-title>{{ action.label }}</v-card-title>
-                    <v-card-text><strong>[{{ action.code }}]</strong> :: {{ action.link }}</v-card-text>
-                    <v-card-actions>
-                        <v-btn class="ma-1" color="blue" dark
+                    <v-card-subtitle>[ {{ action.code }} ]</v-card-subtitle>
+                    <v-card-text>{{ action.link }}</v-card-text>
+                    <v-card-actions absolute bottom>
+                        <v-btn class="ma-1" color="blue" outlined
                                :to="{ name: 'SettingItem', params: { code: action.code, actionType:'edit' } }">
                             <v-icon dark left>mdi-pencil</v-icon>
                             Edit
                         </v-btn>
-                        <v-btn class="ma-1" color="green" dark
+                        <v-btn class="ma-1" color="green" outlined
                                :to="{ name: 'SettingItem', params: { code: action.code, actionType:'copy' } }">
-                            <v-icon dark left>mdi-checkbox-marked-circle</v-icon>
+                            <v-icon dark left>mdi-content-duplicate</v-icon>
                             Copy
                         </v-btn>
                         <v-spacer></v-spacer>
-                        <v-btn class="ma-1" color="red" dark
+                        <v-btn class="ma-1" color="red" outlined
                                :to="{ name: 'SettingItem', params: { code: action.code , actionType:'delete' } }">
-                            <v-icon>mdi-cancel</v-icon>
+                            <v-icon>mdi-delete</v-icon>
                         </v-btn>
                     </v-card-actions>
                 </v-card>
@@ -100,7 +101,7 @@
         methods: {
             resetDefaultScanActions () {
                 this.randomSeed = Math.random().toString(36).substr(2, 9);
-                this.$http.get(process.env.BASE_URL + '/config/defaultScanActions.json').then((response) => this.$store.commit('replaceScanActions', response.data));
+                this.$http.get('/config/defaultScanActions.json').then((response) => this.$store.commit('replaceScanActions', response.data));
             }
         }
     }

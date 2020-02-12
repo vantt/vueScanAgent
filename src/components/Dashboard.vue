@@ -11,7 +11,7 @@
                 >
                     <v-card-title>{{ action.label }}</v-card-title>
                     <v-spacer></v-spacer>
-                    <v-card-actions align="right" :align-self="align">
+                    <v-card-actions align="right" >
                         <v-btn text outlined>
                             <v-icon>mdi-qrcode</v-icon>
                             SCAN
