@@ -2,16 +2,17 @@
     <v-container fluid>
         <v-col>
             <v-row align="baseline" justify="center" no-gutters >
-                <v-card class="ma-3 pa-6" style="min-height:150px; width:300px" raised outlined tile height="200"
+                <v-card data-test="scan-card"
+                        class="ma-3 pa-6" style="min-height:150px; width:300px" raised outlined tile height="200"
                         v-for="action in allScanActions"
                         :key="action.code"
                         :ripple="{ class: 'green--text' }"
                         :to="{ name: 'Scan', params: { actionCode: action.code } }"
                         justify="space-around"
                 >
-                    <v-card-title>{{ action.label }}</v-card-title>
+                    <v-card-title data-test="card-title">{{ action.label }}</v-card-title>
                     <v-spacer></v-spacer>
-                    <v-card-actions align="right" >
+                    <v-card-actions data-test="card-action" align="right" >
                         <v-btn text outlined>
                             <v-icon>mdi-qrcode</v-icon>
                             SCAN
@@ -20,15 +21,13 @@
                     </v-card-actions>
                 </v-card>
             </v-row>
-            <v-card-text style="height: 100px; position: relative">
+            <v-card-text style="height: 100px; position: relative" data-test="addNew-btn">
                 <v-btn fab absolute bottom right dark color="pink"
                        @click="$router.push({ name: 'SettingItem', params: {code: 'new'} })">
                     <v-icon>mdi-plus</v-icon>
                 </v-btn>
             </v-card-text>
         </v-col>
-
-
     </v-container>
 </template>
 
