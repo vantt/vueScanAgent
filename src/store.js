@@ -2,17 +2,19 @@ import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
 import defaultScanActions from "@/config/defaultScanActions.json";
-//import replicator from "./core/replicator";
 
 Vue.use(Vuex);
 
-export function createStore() {
+export function createStore(scanActions) {
+    if (scanActions === undefined || scanActions === null) {
+        scanActions = defaultScanActions
+    }
 
     let store = new Vuex.Store({
         state: () => ({
             ipfsAddress: '',
             dbAddress: '',
-            scanActions: defaultScanActions,
+            scanActions: scanActions,
             scanHistories: [{scanAction: "code", content: "Search", created: ""}]
         }),
 

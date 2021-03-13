@@ -1,9 +1,9 @@
 <template>
     <v-app id="app">
         <v-app-bar app>
-            <v-btn text :to="{ name: 'Home'}">Scan</v-btn>
-            <v-btn text :to="{ name: 'History'}">History</v-btn>
-            <v-btn text :to="{ name: 'Settings', params: {}}">Settings</v-btn>
+            <v-btn data-test="top-menu" text :to="{ name: 'Home'}">Scan</v-btn>
+            <v-btn data-test="top-menu" text :to="{ name: 'History'}">History</v-btn>
+            <v-btn data-test="top-menu" text :to="{ name: 'Settings', params: {}}">Settings</v-btn>
         </v-app-bar>
         <!-- Sizes your content based upon application components -->
         <v-content>
