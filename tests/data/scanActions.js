@@ -19,6 +19,8 @@ export const scanAction3 = {
   "autoRescan": true
 };
 
-export const scanActions = [scanAction1, scanAction2, scanAction3];;
+export const scanActions = [scanAction1, scanAction2, scanAction3];
+export const EmptyScanAction = [];
+
 
 

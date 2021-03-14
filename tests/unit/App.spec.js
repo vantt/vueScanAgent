@@ -71,11 +71,12 @@ describe("App.vue is a valid component", () => {
 
     it("redirects to /scans if no route specified", async () => {
         const wrapper = createComponent();
+
+        // move away from Home Screen
+        await wrapper.findAll("[data-test='top-menu']").at(1).trigger('click');
+
         await wrapper.vm.$router.push('/');
         expect(wrapper.vm.$route.path).toEqual("/scans");
-
-      await wrapper.vm.$router.push('');
-      expect(wrapper.vm.$route.path).toEqual("/scans");
     });
 });
 

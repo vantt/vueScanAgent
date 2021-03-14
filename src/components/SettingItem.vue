@@ -44,88 +44,88 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
-    import {FormData} from "../core/FormData";
+import {mapGetters} from 'vuex';
+import {FormData} from "../core/FormData";
 
-    export default {
-        name: "SettingItem",
+export default {
+    name: "SettingItem",
 
-        data: () => ({
-            form: null,
-            actionCode: "",
-            actionType: "",
-        }),
+    data: () => ({
+        form: null,
+        actionCode: "",
+        actionType: "",
+    }),
 
-        beforeRouteUpdate(to, from, next) {
-            // called when the route that renders this component has changed,
-            // but this component is reused in the new route.
-            // For example, for a route with dynamic params `/foo/:id`, when we
-            // navigate between `/foo/1` and `/foo/2`, the same `Foo` component instance
-            // will be reused, and this hook will be called when that happens.
-            // has access to `this` component instance.
+    beforeRouteUpdate(to, from, next) {
+        // called when the route that renders this component has changed,
+        // but this component is reused in the new route.
+        // For example, for a route with dynamic params `/foo/:id`, when we
+        // navigate between `/foo/1` and `/foo/2`, the same `Foo` component instance
+        // will be reused, and this hook will be called when that happens.
+        // has access to `this` component instance.
 
-            this.actionCode = to.params.code;
-            this.actionType = to.params.actionType;
-            this.fetchData();
-            next()
-        },
+        this.actionCode = to.params.code;
+        this.actionType = to.params.actionType;
+        this.fetchData();
+        next()
+    },
 
-        beforeMount() {
-            // https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
-            this.actionCode = this.$route.params.code;
-            this.actionType = this.$route.params.actionType;
-            this.fetchData();
+    beforeMount() {
+        // https://vuejs.org/v2/api/#Options-Lifecycle-Hooks
+        this.actionCode = this.$route.params.code;
+        this.actionType = this.$route.params.actionType;
+        this.fetchData();
 
-            switch (this.actionType) {
-                case "delete":
-                    this.performDelete();
-                    return;
+        switch (this.actionType) {
+        case "delete":
+            this.performDelete();
+            return;
 
-                case "copy":
-                    this.performCopy();
-                    return;
-            }
-        },
-
-        methods: {
-            fetchData() {
-                this.form = new FormData(this.currentSetting);
-            },
-
-            performDelete() {
-                this.$store.commit('removeScanAction', {code: this.actionCode});
-                this.$router.push("/settings");
-            },
-
-            performCopy() {
-                let newCode = 'Copy_' + this.actionCode + '_' + Math.random();
-
-                this.$store.commit('copyScanAction', {code: this.actionCode, newCode: newCode});
-                this.$router.push({name: "SettingItem", params: {code: newCode, actionType: 'edit'}});
-            },
-
-            performUpdate() {
-                this.$store.commit('updateScanAction', this.form);
-                this.$router.push("/settings");
-            },
-        },
-
-        computed: {
-            currentSetting() {
-                let action = this.$store.getters.getScanActionByCode(this.actionCode);
-
-                if (undefined === action) {
-                    action = {code: this.actionCode, label: "", link: "http://"};
-                }
-
-                return action;
-            },
-
-            ...mapGetters([
-                'allScanActions',
-            ])
+        case "copy":
+            this.performCopy();
+            return;
         }
+    },
+
+    methods: {
+        fetchData() {
+            this.form = new FormData(this.currentSetting);
+        },
+
+        performDelete() {
+            this.$store.commit('removeScanAction', {code: this.actionCode});
+            this.$router.push("/settings");
+        },
+
+        performCopy() {
+            let newCode = 'Copy_' + this.actionCode + '_' + Math.random();
+
+            this.$store.commit('copyScanAction', {code: this.actionCode, newCode: newCode});
+            this.$router.push({name: "SettingItem", params: {code: newCode, actionType: 'edit'}});
+        },
+
+        performUpdate() {
+            this.$store.commit('updateScanAction', this.form);
+            this.$router.push("/settings");
+        },
+    },
+
+    computed: {
+        currentSetting() {
+            let action = this.$store.getters.getScanActionByCode(this.actionCode);
+
+            if (undefined === action) {
+                action = {code: this.actionCode, label: "", link: "http://"};
+            }
+
+            return action;
+        },
+
+        ...mapGetters([
+            'allScanActions',
+        ])
     }
+}
 </script>
 
 <style scoped>
