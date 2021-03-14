@@ -18,10 +18,10 @@ export default new Router({
     routes: [
         {
             path: "",
-            redirect: "/scan"
+            redirect: "/scans"
         },
         {
-            path: "/scan",
+            path: "/scans",
             name: "Home",
             component: Dashboard
         },

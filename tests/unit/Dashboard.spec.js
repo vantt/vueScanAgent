@@ -65,7 +65,7 @@ describe("Dashboard.vue is a valid component", () => {
         card.trigger("click");
 
         //expect(routerPushSpy).toHaveBeenCalledWith({"name": "Scan", "params": {"actionCode": "test-checkin1"}})
-        expect(wrapper.vm.$route.path).toContain("/scan/test-checkin1");
+        expect(wrapper.vm.$route.path).toEqual("/scan/test-checkin1");
         expect(window.location.href).toContain("/scan/test-checkin1");
     });
 });
