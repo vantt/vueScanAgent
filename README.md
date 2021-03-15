@@ -2,14 +2,14 @@
 
 ## Introduction
 - This is a QRCode Scanner that will submit scanning result to web-hooks of your choice.
-- You can pre-define many different scan-actions so that scan results will be submitted to different web-hooks.
+- You can pre-define many scan-actions so that scan results will be submitted to different web-hooks.
 
 ## Requirements
-- The app using WebRTC protocol to invoke camera/webcam so the app must be run with https support
+- The app using WebRTC protocol to invoke a camera/webcam, so the app must be run with https support
 - Due to technical limit, it could not be run on iPhone or iPad.
 - This an WPA app that could run on a Chrome browser on Windows or Android Phone
 
-## Usage
+## ge
 - This app supports a pre-defined list of scanning actions, so you can quickly switch between actions.
 - With the pre-defined actions, you can use the app for warehouse management, for events with multiple activities like entrance checkin, lunch checkin, exit-checkin..., or you can design games with many activity checking.  
 
@@ -65,7 +65,10 @@ You can copy artifacts in this folder on to your deployment environment.
 
 ### Run your tests
 ```
-npm run test
+npm run test:unit
+npm run tdd:unit
+npm run test:e2e
+npm run tdd:e2e
 ```
 
 ### Lints and fixes files
@@ -90,11 +93,11 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ### Deploy to github page
 https://cli.vuejs.org/guide/deployment.html#github-pages
 
-### References
-## About QR Code
+## References
+### About QR Code
 https://www.qrcode.com/en/codes/microqr.html
 
-## Js Decoder Libraries
+### Js Decoder Libraries
 https://github.com/cozmo/jsQR
 https://github.com/kig/zxing-cpp-emscripten
 https://github.com/zxing-js/library
@@ -102,11 +105,41 @@ https://github.com/zxing-js/browser
 https://github.com/dlbeer/quirc
 http://boofcv.org/index.php?title=Tutorial_QRCodes
 
-## Scanners
+### Scanners
 https://github.com/schmich/instascan
 https://github.com/nimiq/qr-scanner
 https://github.com/dynamsoft-dbr/javascript-barcode
 
+### Fake Camera for Testing
+https://filesamples.com/categories/video
+https://stackoverflow.com/questions/52095416/how-can-i-correctly-provide-a-mock-webcam-video-to-chrome
+https://stackoverflow.com/questions/31859459/how-can-i-pass-a-fake-media-stream-to-firefox-from-command-line/63312430#63312430
+
+```shell
+ffmpeg -i oldfile.mp4 newfile.mjpeg
+google-chrome --use-fake-device-for-media-stream --use-file-for-fake-video-capture=newfile.mjpeg
+
+https://trackingjs.com/examples/face_camera.html
+```
+
+```javascript
+await page.evaluate(() => {
+        const video = document.createElement("video");
+
+        video.setAttribute('id', 'video-mock');
+        video.setAttribute("src", 'https://woolyss.com/f/spring-vp9-vorbis.webm');
+        video.setAttribute("crossorigin", "anonymous");
+        video.setAttribute("controls", "");
+
+        video.oncanplay = () => {
+            const stream = video.captureStream();
+
+            navigator.mediaDevices.getUserMedia = () => Promise.resolve(stream);
+        };
+
+        document.querySelector("body").appendChild(video);
+    });
+```
 ### Data transfer
 Todo: configuration transferring between devices
 - https://js.ipfs.com
