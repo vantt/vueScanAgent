@@ -10,12 +10,16 @@
 // const webpack = require('@cypress/webpack-preprocessor')
 
 module.exports = (on, config) => {
-    on('before:browser:launch', (browser, launchOptions) => {
-        // launchOptions.args.push('--use-fake-ui-for-media-stream')
-        // launchOptions.args.push('--use-fake-device-for-media-stream')
-        // launchOptions.args.push('--use-file-for-fake-video-capture="/home/vantt/WebstormProjects/vueScanAgent/tests/e2e/fixtures/test.mjpeg')
-        //
-        // return launchOptions
+    on('before:browser:launch', (browser = {}, launchOptions) => {
+        if (browser.family === 'chromium' && browser.name !== 'electron') {
+            // Mac/Linux
+            launchOptions.args.push('--use-file-for-fake-video-capture=tests/e2e/fixtures/sample.mjpeg')
+
+            // Windows
+            // launchOptions.args.push('--use-file-for-fake-video-capture=c:\\path\\to\\video\\my-video.y4m')
+        }
+
+        return launchOptions
     })
 
     // on('file:preprocessor', webpack({
