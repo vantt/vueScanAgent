@@ -6,6 +6,6 @@ import VueRouter from "vue-router";
 Vue.config.productionTip = false;
 
 Vue
-  .use(Vuex)
-  .use(VueRouter)
-  .use(Vuetify);
+    .use(Vuex)
+    .use(VueRouter)
+    .use(Vuetify);

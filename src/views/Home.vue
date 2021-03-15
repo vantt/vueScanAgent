@@ -6,8 +6,8 @@
 import Dashboard from '../components/Dashboard';
 
 export default {
-  components: {
-    Dashboard,
-  }
+    components: {
+        Dashboard,
+    }
 };
 </script>

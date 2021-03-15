@@ -8,35 +8,35 @@
 
 <script>
 
-    import ScanView from "./InstascanView";
-    import JSONH from 'jsonh';
+import ScanView from "./InstascanView";
+import JSONH from 'jsonh';
 
-    export default {
-        name: "SettingCapture",
+export default {
+    name: "SettingCapture",
 
-        components: { ScanView },
+    components: { ScanView },
 
-        data: () => ({
-            isShowCamera: true,
-        }),
+    data: () => ({
+        isShowCamera: true,
+    }),
 
-        beforeRouteLeave(to, from, next) {
-            // stop camera when leaving this route
+    beforeRouteLeave(to, from, next) {
+        // stop camera when leaving this route
+        this.isShowCamera = false;
+        next();
+    },
+
+    methods: {
+        showContent: function (content) {
             this.isShowCamera = false;
-            next();
+
+            const data = JSONH.parse(content);
+            this.$store.commit('replaceScanActions', data);
+
+            setTimeout(this.$router.push({ name: "Settings", params: { } }), 1000);
         },
-
-        methods: {
-             showContent: function (content) {
-                 this.isShowCamera = false;
-
-                 const data = JSONH.parse(content);
-                 this.$store.commit('replaceScanActions', data);
-
-                 setTimeout(this.$router.push({ name: "Settings", params: { } }), 1000);
-            },
-        },
-    }
+    },
+}
 </script>
 
 <style>

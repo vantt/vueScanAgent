@@ -15,30 +15,30 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
-    import JSONH from 'jsonh';
+import {mapGetters} from 'vuex';
+import JSONH from 'jsonh';
 
-    export default {
-        name: "Settings",
+export default {
+    name: "Settings",
 
-        data: () => ({
-            ipfsAddress: '',
-        }),
+    data: () => ({
+        ipfsAddress: '',
+    }),
 
-        computed: {
-            ...mapGetters([
-                'allScanActions',
-            ])
+    computed: {
+        ...mapGetters([
+            'allScanActions',
+        ])
+    },
+
+    mounted() {
+        this.exposeConfig(null);
+    },
+
+    methods: {
+        async exposeConfig() {
+            this.ipfsAddress = JSONH.stringify(this.allScanActions);
         },
-
-        mounted() {
-            this.exposeConfig(null);
-        },
-
-        methods: {
-            async exposeConfig() {
-                this.ipfsAddress = JSONH.stringify(this.allScanActions);
-            },
-        },
-    }
+    },
+}
 </script>

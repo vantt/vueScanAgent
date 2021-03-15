@@ -1,11 +1,12 @@
 <template>
-    <v-row align="start" justify="center" no-gutters >
+    <v-row data-test="settingItem-component" align="start" justify="center" no-gutters >
         <v-form ref="form">
             <v-text-field
                     v-model="form.code"
                     label="Activity Code"
                     outlined
                     required
+                    data-test="field-code"
             ></v-text-field>
 
             <v-text-field
@@ -13,6 +14,7 @@
                     label="Label"
                     outlined
                     required
+                    data-test="field-label"
             ></v-text-field>
 
             <v-textarea
@@ -20,14 +22,16 @@
                     label="Link"
                     outlined
                     required
+                    data-test="field-link"
             ></v-textarea>
 
-            <v-switch v-model="form.autoRescan" :label="`Auto Rescan: ${form.autoRescan}`"></v-switch>
+            <v-switch v-model="form.autoRescan" :label="`Auto Rescan: ${form.autoRescan}`" data-test="field-autorescan"></v-switch>
 
             <v-btn
                     color="success"
                     class="mr-4"
                     @click="performUpdate"
+                    data-test="btn-save"
             >
                 Save
             </v-btn>
@@ -36,6 +40,7 @@
                     color="error"
                     class="mr-4"
                     @click="performDelete"
+                    data-test="btn-delete"
             >
                 Delete
             </v-btn>

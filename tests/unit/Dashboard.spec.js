@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import Vuex from "vuex";
-import { scanActions } from "../data/scanActions";
+import { mockScanActions } from "./fixtures/mockScanActions";
 import { createStore } from "@/store";
 import VueRouter from "vue-router";
 import Dashboard from "@/components/Dashboard";
@@ -12,7 +12,7 @@ const createComponent = () => {
     localVue.use(VueRouter);
 
     const vuetify = new Vuetify();
-    const store = createStore(scanActions);
+    const store = createStore(mockScanActions);
 
     const router = new VueRouter({
         routes: [
@@ -51,7 +51,7 @@ describe("Dashboard.vue is a valid component", () => {
         expect(card.find('[data-test="card-title"]').text()).toEqual(
             "Test Checkin1"
         );
-        expect(card.find('[data-test="card-action"]').text()).toEqual("SCAN");
+        expect(card.find('[data-test="scan-action"]').text()).toEqual("SCAN");
         expect(card.attributes()["href"]).toContain("/scan/test-checkin1");
     });
 

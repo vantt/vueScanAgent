@@ -1,6 +1,6 @@
 [
   {
-    "code": "checkin0b1",
+    "code": "checkin1",
     "label": "Checkin1",
     "link": "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn&recept=Uyen",
     "autoRescan": true

@@ -1,9 +1,8 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import Vuex from "vuex";
-import { scanActions, EmptyScanAction } from "../data/scanActions";
+import { mockScanActions, EmptyScanAction } from "./fixtures/mockScanActions";
 import { createStore } from "@/store";
-import flushPromises from 'flush-promises';
 import router from "@/router";
 import SUTComponent from "@/components/Settings";
 
@@ -33,7 +32,7 @@ describe("Settings.vue is a valid component", () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = createComponent(scanActions);
+        wrapper = createComponent(mockScanActions);
     });
 
     test("is a Vue instance", () => {
@@ -71,13 +70,13 @@ describe("Settings.vue renders scan cards correctly", () => {
     });
 
     it("given 3 scan-records in store, renders 3 scan cards", async () => {
-        const wrapper = createComponent(scanActions);
+        const wrapper = createComponent(mockScanActions);
         expect(wrapper.findAll('[data-test="scan-card"]')).toHaveLength(3);
     });
 
     it("correctly renders a Card", async () => {
-        const wrapper = createComponent(scanActions);
-        const cardInfo = scanActions[0];
+        const wrapper = createComponent(mockScanActions);
+        const cardInfo = mockScanActions[0];
         const card = wrapper.findAll('[data-test="scan-card"]').at(0);
 
         expect(card.find('[data-test="card-title"]').text()).toEqual(cardInfo.label);
@@ -90,29 +89,39 @@ describe("Settings.vue renders scan cards correctly", () => {
     });
 
     it("when click on Edit button, go to Edit page", () => {
-        const wrapper = createComponent(scanActions);
+        const wrapper = createComponent(mockScanActions);
         const card = wrapper.findAll('[data-test="scan-card"]').at(0);
         const btn = card.find('[data-test="card-edit"]');
 
         btn.trigger('click');
-        expect(wrapper.vm.$route.path).toEqual("/setting/"+scanActions[0].code+"/edit");
+        expect(wrapper.vm.$route.path).toEqual("/setting/"+mockScanActions[0].code+"/edit");
     });
 
-    it("when click on Copy button, go to Copy page", () => {
-        const wrapper = createComponent(scanActions);
+    it("when click on Copy button, go to Copy page", async() => {
+        const wrapper = createComponent(mockScanActions);
         const card = wrapper.findAll('[data-test="scan-card"]').at(0);
         const btn = card.find('[data-test="card-copy"]');
 
         btn.trigger('click');
-        expect(wrapper.vm.$route.path).toEqual("/setting/"+scanActions[0].code+"/copy");
+        expect(wrapper.vm.$route.path).toEqual("/setting/"+mockScanActions[0].code+"/copy");
     });
 
-    it("when click on Delete button, goto delete action", () => {
-        const wrapper = createComponent(scanActions);
+    it("when click on Delete button, goto delete action", async () => {
+        const wrapper = createComponent(mockScanActions);
         const card = wrapper.findAll('[data-test="scan-card"]').at(0);
         const btn = card.find('[data-test="card-delete"]');
         btn.trigger('click');
-
-        expect(wrapper.vm.$route.path).toEqual("/setting/"+scanActions[0].code+"/delete")
+        expect(wrapper.vm.$route.path).toEqual("/setting/"+mockScanActions[0].code+"/delete")
     });
+
+    // it("when click on Delete button, goto delete action 2", async () => {
+    //     const wrapper = createComponent(scanActions);
+    //     const card = wrapper.findAll('[data-test="scan-card"]').at(0);
+    //     const btn = card.find('[data-test="card-delete"]');
+    //
+    //     expect(wrapper.findAll('[data-test="scan-card"]')).toHaveLength(3);
+    //     btn.trigger('click');
+    //     await Vue.nextTick();
+    //     expect(wrapper.findAll('[data-test="scan-card"]')).toHaveLength(2);
+    // });
 });

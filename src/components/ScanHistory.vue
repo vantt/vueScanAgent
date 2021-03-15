@@ -13,16 +13,16 @@
 
 
 <script>
-    import {mapGetters} from 'vuex';
+import {mapGetters} from 'vuex';
 
-    export default {
-        name: "ScanHistory",
-        computed: {
-            ...mapGetters([
-                'allScanHistories',
-            ])
-        }
+export default {
+    name: "ScanHistory",
+    computed: {
+        ...mapGetters([
+            'allScanHistories',
+        ])
     }
+}
 </script>
 
 <style scoped>

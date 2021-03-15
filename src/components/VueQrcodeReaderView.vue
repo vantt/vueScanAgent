@@ -20,129 +20,129 @@
 </template>
 
 <script>
-    import {QrcodeStream} from 'vue-qrcode-reader'
+import {QrcodeStream} from 'vue-qrcode-reader'
 
-    export default {
-        name: "ScanView",
-        components: { QrcodeStream },
+export default {
+    name: "ScanView",
+    components: { QrcodeStream },
 
-        data() {
-            return {
-                result: null,
-                error: null,
-                camera: 'auto',
-                noRearCamera: false,
-                noFrontCamera: false,
-                isShowCamera: true,
-                audio: null,
-            }
-        },
-
-        props: {
-            showCamera: Boolean
-        },
-
-        watch: {
-            showCamera(isVisible) {
-                if (isVisible) {
-                    this.turnCameraOn()
-                } else {
-                    this.turnCameraOff()
-                }
-            }
-        },
-
-        mounted() {
-            this.audio = new Audio(require('@/assets/beep.mp3'));
-            this.audio.load();
-        },
-
-        methods: {
-            onDecode(result) {
-                this.result = result;
-                this.audio.play();
-                this.$emit('onDecode', result);
-            },
-
-            async onInit(promise) {
-                try {
-                    await promise
-                } catch (error) {
-                    const triedFrontCamera = this.camera === 'front';
-                    const triedRearCamera = this.camera === 'rear';
-
-                    const cameraMissingError = error.name === 'OverconstrainedError';
-
-                    if (triedRearCamera && cameraMissingError) {
-                        this.noRearCamera = true;
-                    }
-
-                    if (triedFrontCamera && cameraMissingError) {
-                        this.noFrontCamera = true;
-                    }
-
-                    if (error.name === 'NotAllowedError') {
-                        this.error = "ERROR: you need to grant camera access permisson"
-                    } else if (error.name === 'NotFoundError') {
-                        this.error = "ERROR: no camera on this device"
-                    } else if (error.name === 'NotSupportedError') {
-                        this.error = "ERROR: secure context required (HTTPS, localhost)"
-                    } else if (error.name === 'NotReadableError') {
-                        this.error = "ERROR: is the camera already in use?"
-                    } else if (error.name === 'OverconstrainedError') {
-                        this.error = "ERROR: installed cameras are not suitable"
-                    } else if (error.name === 'StreamApiNotSupportedError') {
-                        this.error = "ERROR: Stream API is not supported in this browser"
-                    }
-
-                    console.error(this.error);
-                }
-            },
-
-            switchCamera() {
-                switch (this.camera) {
-                    case 'front':
-                        this.camera = 'front';
-                        alert('hahah');
-                        break;
-                    case 'rear':
-                        this.camera = 'rear';
-                        alert('hahahe');
-                        break;
-                }
-            },
-
-            turnCameraOn() {
-                this.camera = 'auto';
-                this.isShowCamera = true;
-            },
-
-            turnCameraOff() {
-                this.camera = 'off';
-                this.isShowCamera = false;
-            },
-
-            paintBlueDots(location, ctx) {
-                const {
-                    topLeftFinderPattern,
-                    topRightFinderPattern,
-                    bottomLeftFinderPattern
-                } = location;
-
-                const pointArray = [
-                    topLeftFinderPattern,
-                    topRightFinderPattern,
-                    bottomLeftFinderPattern
-                ];
-
-                ctx.fillStyle = '#007bff';
-
-                pointArray.forEach(({x, y}) => {
-                    ctx.fillRect(x - 5, y - 5, 10, 10);
-                });
-            },
+    data() {
+        return {
+            result: null,
+            error: null,
+            camera: 'auto',
+            noRearCamera: false,
+            noFrontCamera: false,
+            isShowCamera: true,
+            audio: null,
         }
+    },
+
+    props: {
+        showCamera: Boolean
+    },
+
+    watch: {
+        showCamera(isVisible) {
+            if (isVisible) {
+                this.turnCameraOn()
+            } else {
+                this.turnCameraOff()
+            }
+        }
+    },
+
+    mounted() {
+        this.audio = new Audio(require('@/assets/beep.mp3'));
+        this.audio.load();
+    },
+
+    methods: {
+        onDecode(result) {
+            this.result = result;
+            this.audio.play();
+            this.$emit('onDecode', result);
+        },
+
+        async onInit(promise) {
+            try {
+                await promise
+            } catch (error) {
+                const triedFrontCamera = this.camera === 'front';
+                const triedRearCamera = this.camera === 'rear';
+
+                const cameraMissingError = error.name === 'OverconstrainedError';
+
+                if (triedRearCamera && cameraMissingError) {
+                    this.noRearCamera = true;
+                }
+
+                if (triedFrontCamera && cameraMissingError) {
+                    this.noFrontCamera = true;
+                }
+
+                if (error.name === 'NotAllowedError') {
+                    this.error = "ERROR: you need to grant camera access permisson"
+                } else if (error.name === 'NotFoundError') {
+                    this.error = "ERROR: no camera on this device"
+                } else if (error.name === 'NotSupportedError') {
+                    this.error = "ERROR: secure context required (HTTPS, localhost)"
+                } else if (error.name === 'NotReadableError') {
+                    this.error = "ERROR: is the camera already in use?"
+                } else if (error.name === 'OverconstrainedError') {
+                    this.error = "ERROR: installed cameras are not suitable"
+                } else if (error.name === 'StreamApiNotSupportedError') {
+                    this.error = "ERROR: Stream API is not supported in this browser"
+                }
+
+                console.error(this.error);
+            }
+        },
+
+        switchCamera() {
+            switch (this.camera) {
+            case 'front':
+                this.camera = 'front';
+                alert('hahah');
+                break;
+            case 'rear':
+                this.camera = 'rear';
+                alert('hahahe');
+                break;
+            }
+        },
+
+        turnCameraOn() {
+            this.camera = 'auto';
+            this.isShowCamera = true;
+        },
+
+        turnCameraOff() {
+            this.camera = 'off';
+            this.isShowCamera = false;
+        },
+
+        paintBlueDots(location, ctx) {
+            const {
+                topLeftFinderPattern,
+                topRightFinderPattern,
+                bottomLeftFinderPattern
+            } = location;
+
+            const pointArray = [
+                topLeftFinderPattern,
+                topRightFinderPattern,
+                bottomLeftFinderPattern
+            ];
+
+            ctx.fillStyle = '#007bff';
+
+            pointArray.forEach(({x, y}) => {
+                ctx.fillRect(x - 5, y - 5, 10, 10);
+            });
+        },
     }
+}
 </script>
 
 <style scoped>

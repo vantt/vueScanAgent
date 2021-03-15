@@ -1,5 +1,5 @@
 <template>
-    <v-app id="app">
+    <v-app id="app" data-test="app-component">
         <v-app-bar app>
             <v-btn data-test="top-menu" text :to="{ name: 'Home'}">Scan</v-btn>
             <v-btn data-test="top-menu" text :to="{ name: 'History'}">History</v-btn>
@@ -17,14 +17,14 @@
 </template>
 
 <script>
-    export default {
-        name: 'App',
-        components: {},
+export default {
+    name: 'App',
+    components: {},
 
-        data: () => ({
-            //
-        }),
-    };
+    data: () => ({
+        //
+    }),
+};
 </script>
 
 <style>

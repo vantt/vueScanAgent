@@ -3,13 +3,13 @@ import Vuetify from "vuetify";
 import Vuex from "vuex";
 import router from "@/router";
 import { createStore } from "@/store";
-import { scanActions } from "../data/scanActions";
+import { mockScanActions } from "./fixtures/mockScanActions";
 import App from "@/App";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 
-const store = createStore(scanActions);
+const store = createStore(mockScanActions);
 const vuetify = new Vuetify();
 
 const createComponent = () => {

@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid>
+  <v-container fluid data-test="settings-component">
     <v-col>
       <v-row align="start" justify="center" dense no-gutters>
         <v-card data-test="scan-card" class="ma-2 pa-0" style="min-height:230px; width:400px" raised elevation="1"
@@ -68,7 +68,7 @@
                dark
                small
                color="green"
-               data-test="speed-action newItem"
+               data-test="speed-action new-scan"
         >
           <v-icon>mdi-plus</v-icon>
         </v-btn>
@@ -82,30 +82,30 @@
 import { mapGetters } from "vuex";
 
 export default {
-  name: "Settings",
-  data: () => ({
-    randomSeed: Math.random().toString(36).substr(2, 9)
-  }),
+    name: "Settings",
+    data: () => ({
+        randomSeed: Math.random().toString(36).substr(2, 9)
+    }),
 
-  computed: {
-    ...mapGetters([
-      "allScanActions"
-    ])
-  },
+    computed: {
+        ...mapGetters([
+            "allScanActions"
+        ])
+    },
 
-  beforeRouteUpdate(to, from, next) {
-    if (to.params.action !== null && to.params.action !== undefined && to.params.action === "reset") {
-      this.resetDefaultScanActions();
+    beforeRouteUpdate(to, from, next) {
+        if (to.params.action !== null && to.params.action !== undefined && to.params.action === "reset") {
+            this.resetDefaultScanActions();
+        }
+        next();
+    },
+
+    methods: {
+        resetDefaultScanActions() {
+            this.randomSeed = Math.random().toString(36).substr(2, 9);
+            this.$http.get("/config/defaultScanActions.json").then((response) => this.$store.commit("replaceScanActions", response.data));
+        }
     }
-    next();
-  },
-
-  methods: {
-    resetDefaultScanActions() {
-      this.randomSeed = Math.random().toString(36).substr(2, 9);
-      this.$http.get("/config/defaultScanActions.json").then((response) => this.$store.commit("replaceScanActions", response.data));
-    }
-  }
 };
 </script>
 
