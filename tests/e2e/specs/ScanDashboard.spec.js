@@ -38,7 +38,7 @@ describe('ScanDashboard screen, Add New button', () => {
         cy.get('[data-test="addNew-btn"]').should('be.visible');
     });
 
-    it.only("click on Add New button, then save, new Item created", () => {
+    it("click on Add New button, then save, new Item created", () => {
         cy.get('[data-test="scan-card"]').should('have.length', 3);
 
         // then, click on Add New button
