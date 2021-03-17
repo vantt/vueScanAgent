@@ -9,16 +9,9 @@ import SUTComponent from "@/components/Settings";
 const createComponent = (actions) => {
     const localVue = createLocalVue();
     localVue.use(Vuex);
-    //localVue.use(VueRouter);
 
     const vuetify = new Vuetify();
-
     const store = createStore(actions);
-    // const router = new VueRouter({
-    //     routes: [
-    //         { path: "/setting/:code/:actionType", name: "SettingItem", component: () => '-' }
-    //     ]
-    // });
 
     return mount(SUTComponent, {
         store,
@@ -74,3 +67,32 @@ describe("Settings.vue renders scan cards correctly", () => {
         expect(wrapper.findAll('[data-test="setting-card"]')).toHaveLength(3);
     });
 });
+
+
+describe("Settings.vue, test on Quick Actions", () => {
+    it("click on Reset button, 'resetStoreToDefaultScanActions()' should be called", async () => {
+        // const spy = jest.fn();
+        // wrapper.setMethods({ resetStoreToDefaultScanActions: spy })
+        //const spy = jest.spyOn(wrapper.vm, 'resetStoreToDefaultScanActions');
+        const spy = jest.spyOn(SUTComponent.methods, 'resetStoreToDefaultScanActions');
+
+        const localVue = createLocalVue();
+        localVue.use(Vuex);
+
+        const vuetify = new Vuetify();
+        const store = createStore(mockScanActions);
+
+        const wrapper = mount(SUTComponent, {
+            store,
+            router,
+            vuetify,
+            localVue
+        });
+
+        const speedDial = wrapper.find('[data-test="speed-dial"]');
+        await speedDial.trigger('click');
+        await wrapper.find('[data-test~="reset-settings"]').trigger('click');
+
+        expect(spy).toHaveBeenCalled();
+    });
+})

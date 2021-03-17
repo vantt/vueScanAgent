@@ -1,25 +1,27 @@
-export const scanAction1 = {
-    "code": "test-checkin1",
-    "label": "Test Checkin1",
-    "link": "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn&recept=Uyen",
-    "autoRescan": true
-};
+import {ScanAction} from "@/core/ScanAction";
 
-export const scanAction2 = {
-    "code": "test-checkin2",
-    "label": "Test Checkin2",
-    "link": "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn&recept=Phuong",
-    "autoRescan": true
-};
+export const mockScanAction1 = new ScanAction(
+    "test-checkin1",
+    "Test Checkin1",
+    "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn&recept=Uyen",
+    true
+);
 
-export const scanAction3 = {
-    "code": "test-checkin3",
-    "label": "Test Checkin3",
-    "link": "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn&recept=Nina",
-    "autoRescan": true
-};
+export const mockScanAction2 = new ScanAction(
+    "test-checkin2",
+    "Test Checkin2",
+    "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn&recept=Phuong",
+    true
+);
 
-export const mockScanActions = [scanAction1, scanAction2, scanAction3];
+export const mockScanAction3 = new ScanAction(
+    "test-checkin3",
+    "Test Checkin3",
+    "https://127.0.0.1:8443/admin/qr-check/nestle?key=%scanValue%&activityName=CheckIn&recept=Nina",
+    true
+);
+
+export const mockScanActions = [mockScanAction1, mockScanAction2, mockScanAction3];
 export const EmptyScanAction = [];
 
 

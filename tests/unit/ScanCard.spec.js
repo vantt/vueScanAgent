@@ -2,6 +2,7 @@ import {mount, createLocalVue} from "@vue/test-utils";
 import Vuetify from "vuetify";
 import VueRouter from "vue-router";
 import ScanCard from "@/components/ScanCard";
+import {ScanAction} from "@/core/ScanAction";
 
 const createComponent = () => {
     const localVue = createLocalVue();
@@ -16,12 +17,12 @@ const createComponent = () => {
 
     return mount(ScanCard, {
         propsData: {
-            scanAction: {
-                "code": "test-checkin1",
-                "label": "Test Checkin1",
-                "link": "https://localhost?key=%scanValue%&activityName=CheckIn&recept=Uyen",
-                "autoRescan": true
-            },
+            scanAction: new ScanAction(
+                "test-checkin1",
+                "Test Checkin1",
+                "https://localhost?key=%scanValue%&activityName=CheckIn&recept=Uyen",
+                true
+            ),
         },
         router,
         vuetify,

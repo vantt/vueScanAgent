@@ -1,4 +1,4 @@
-// import { scanAction1 } from '../../data/scanActions'
+// import { mockScanAction1 } from '../../data/scanActions'
 const visit = () => cy.visit('/settings')
 
 describe('Settings screen, renders correctly', () => {

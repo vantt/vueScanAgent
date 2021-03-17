@@ -61,8 +61,8 @@ import SettingCard from "@/components/SettingCard";
 
 export default {
     name: "Settings",
-  components: {SettingCard},
-  data: () => ({
+    components: {SettingCard},
+    data: () => ({
         randomSeed: Math.random().toString(36).substr(2, 9)
     }),
 
@@ -73,16 +73,21 @@ export default {
     },
 
     beforeRouteUpdate(to, from, next) {
+        console.log('xxxx');
         if (to.params.action !== null && to.params.action !== undefined && to.params.action === "reset") {
-            this.resetDefaultScanActions();
+          console.log('yyyyyyy');
+            this.resetStoreToDefaultScanActions();
         }
         next();
     },
 
     methods: {
-        resetDefaultScanActions() {
+        resetStoreToDefaultScanActions() {
+          console.log('asdfasfsdf');
             this.randomSeed = Math.random().toString(36).substr(2, 9);
-            this.$http.get("/config/defaultScanActions.json").then((response) => this.$store.commit("replaceScanActions", response.data));
+            this.$http.get("/config/defaultScanActions.json").then((response) => {
+                this.$store.commit("replaceScanActions", response.data);
+            });
         }
     }
 };

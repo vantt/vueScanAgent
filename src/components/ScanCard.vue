@@ -19,15 +19,12 @@
 </template>
 
 <script>
+import {ScanAction} from "@/core/ScanAction";
+
 export default {
     name: "ScanCard",
     props: {
-        scanAction: {
-            "code": "defaultCode",
-            "label": "Default Label",
-            "link": "https://localhost?key=%scanValue%&activityName=CheckIn&recept=Uyen",
-            "autoRescan": true
-        },
+        scanAction: ScanAction,
     }
 }
 </script>

@@ -15,7 +15,7 @@ export function createStore(scanActions) {
             ipfsAddress: '',
             dbAddress: '',
             scanActions: scanActions,
-            scanHistories: [{scanAction: "code", content: "Search", created: ""}]
+            scanHistories: []
         }),
 
         getters: {
