@@ -48,10 +48,11 @@ describe('ScanDashboard screen, Add New button', () => {
         // then, click save on the new Form
         cy.get('[data-test="btn-save"]').click();
 
-        cy.get('[data-test="scan-card"]').should('have.length', 4);
-
         // it should redirect to /settings
         cy.location('pathname').should('eq', '/settings')
+
+        // it should render new setting-cards
+        cy.get('[data-test="setting-card"]').should('have.length', 4);
     });
 })
 

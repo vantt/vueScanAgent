@@ -2,30 +2,7 @@
   <v-container fluid data-test="settings-component">
     <v-col>
       <v-row align="start" justify="center" dense no-gutters>
-        <v-card data-test="scan-card" class="ma-2 pa-0" style="min-height:230px; width:400px" raised elevation="1"
-                v-for="action in allScanActions"
-                :key="action.code">
-          <v-card-title data-test="card-title">{{ action.label }}</v-card-title>
-          <v-card-subtitle data-test="card-code">[ {{ action.code }} ]</v-card-subtitle>
-          <v-card-text data-test="card-link" style="height: 70px">{{ action.link }}</v-card-text>
-          <v-card-actions absolute bottom>
-            <v-btn data-test="card-edit" class="ma-1" color="blue" outlined
-                   :to="{ name: 'SettingItem', params: { code: action.code, actionType:'edit' } }">
-              <v-icon dark left>mdi-pencil</v-icon>
-              Edit
-            </v-btn>
-            <v-btn data-test="card-copy" class="ma-1" color="green" outlined
-                   :to="{ name: 'SettingItem', params: { code: action.code, actionType:'copy' } }">
-              <v-icon dark left>mdi-content-duplicate</v-icon>
-              Copy
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn data-test="card-delete" class="ma-1" color="red" outlined
-                   :to="{ name: 'SettingItem', params: { code: action.code , actionType:'delete' } }">
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
+        <SettingCard v-for="scanAction in allScanActions"  :key="scanAction.code" :scanAction="scanAction" />
       </v-row>
 
       <v-speed-dial data-test="speed-dial" absolute bottom right fab dark transition="slide-y-reverse-transition">
@@ -80,10 +57,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import SettingCard from "@/components/SettingCard";
 
 export default {
     name: "Settings",
-    data: () => ({
+  components: {SettingCard},
+  data: () => ({
         randomSeed: Math.random().toString(36).substr(2, 9)
     }),
 
