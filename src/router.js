@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import Dashboard from "./components/Dashboard";
+import ScanDashboard from "./components/ScanDashboard";
 import ScanScreen from "./components/ScanScreen";
 
 import Settings from "./components/Settings";
@@ -23,7 +23,7 @@ export default new Router({
         {
             path: "/scans",
             name: "Home",
-            component: Dashboard
+            component: ScanDashboard
         },
         {
             path: "/scan/:actionCode",
