@@ -31,12 +31,12 @@ const createValidComponent = () => {
 
 describe("ScanScreen.vue redirect correctly", () => {
     test("redirect to previous route if a non-existed ScanAction.Code is passed in", () => {
+        const backFn    = jest.fn();
+        const toastFn   = jest.fn();
+        const $toasted  = {error: toastFn}
+        const store     = createStore(mockScanActions);
+        const localVue  = createLocalVue();
 
-        const backFn = jest.fn();
-        const toastFn = jest.fn();
-        const $toasted = {error: toastFn}
-        const store = createStore(mockScanActions);
-        const localVue = createLocalVue();
         localVue.use(VueRouter);
 
         router.back = backFn;

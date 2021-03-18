@@ -73,9 +73,7 @@ export default {
     },
 
     beforeRouteUpdate(to, from, next) {
-        console.log('xxxx');
         if (to.params.action !== null && to.params.action !== undefined && to.params.action === "reset") {
-          console.log('yyyyyyy');
             this.resetStoreToDefaultScanActions();
         }
         next();
@@ -83,7 +81,6 @@ export default {
 
     methods: {
         resetStoreToDefaultScanActions() {
-          console.log('asdfasfsdf');
             this.randomSeed = Math.random().toString(36).substr(2, 9);
             this.$http.get("/config/defaultScanActions.json").then((response) => {
                 this.$store.commit("replaceScanActions", response.data);
