@@ -1,4 +1,4 @@
-import {ScanAction} from "@/core/ScanAction";
+import {ScanAction} from "@/domain/model/ScanAction";
 
 export const mockScanAction1 = new ScanAction(
     "test-checkin1",
@@ -21,8 +21,8 @@ export const mockScanAction3 = new ScanAction(
     true
 );
 
-export const mockScanActions = [mockScanAction1, mockScanAction2, mockScanAction3];
-export const EmptyScanAction = [];
+export const mockScanActions: ScanAction[] = [mockScanAction1, mockScanAction2, mockScanAction3];
+export const EmptyScanAction: ScanAction[] = [];
 
 
 

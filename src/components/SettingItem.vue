@@ -30,7 +30,7 @@
             <v-btn
                     color="success"
                     class="mr-4"
-                    @click="performUpdate"
+                    @click="performSave"
                     data-test="btn-save"
             >
                 Save
@@ -50,7 +50,8 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import {FormData} from "../core/FormData";
+import {FormData} from "@/core/FormData";
+import {ScanAction} from "@/domain/model/ScanAction.ts";
 
 export default {
     name: "SettingItem",
@@ -98,21 +99,27 @@ export default {
         },
 
         performDelete() {
-            this.$store.commit('removeScanAction', {code: this.actionCode});
+            this.$store.dispatch('removeScanAction', {code: this.actionCode})
+            //this.$store.commit('removeScanAction', {code: this.actionCode});
             this.$router.push("/settings");
         },
 
+        performSave() {
+            const payload = new ScanAction(this.form.code, this.form.label, this.form.link, this.form.autoRescan);
+
+            this.$store.dispatch('saveScanAction', payload)
+            //this.$store.commit('saveScanAction', this.form);
+            this.$router.push("/settings");
+        },
+      
         performCopy() {
             let newCode = 'Copy_' + this.actionCode + '_' + Math.random();
-
-            this.$store.commit('copyScanAction', {code: this.actionCode, newCode: newCode});
+            this.$store.dispatch('copyScanAction', {code: this.actionCode, newCode: newCode})
+            //this.$store.commit('copyScanAction', {code: this.actionCode, newCode: newCode});
             this.$router.push({name: "SettingItem", params: {code: newCode, actionType: 'edit'}});
         },
 
-        performUpdate() {
-            this.$store.commit('updateScanAction', this.form);
-            this.$router.push("/settings");
-        },
+        
     },
 
     computed: {

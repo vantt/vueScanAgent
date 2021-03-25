@@ -18,8 +18,8 @@
   </div>
 </template>
 
-<script>
-import {ScanAction} from "@/core/ScanAction";
+<script lang="ts">
+import {ScanAction} from "@/domain/model/ScanAction.ts";
 
 export default {
     name: "ScanCard",

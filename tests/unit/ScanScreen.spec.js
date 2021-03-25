@@ -3,7 +3,7 @@ import Vuetify from "vuetify";
 import VueRouter from "vue-router";
 import ScanScreen from "@/components/ScanScreen";
 import {mockScanAction1, mockScanActions} from "./fixtures/mockScanActions";
-import {createStore} from "@/store";
+import {createStore} from "@/store/store.ts";
 import router from "@/router";
 
 const mediaDevicesMock = {

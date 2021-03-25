@@ -2,7 +2,7 @@ import {mount, createLocalVue} from "@vue/test-utils";
 import Vuetify from "vuetify";
 import VueRouter from "vue-router";
 import ScanCard from "@/components/ScanCard";
-import {ScanAction} from "@/core/ScanAction";
+import {ScanAction} from "@/domain/model/ScanAction.ts";
 
 const createComponent = () => {
     const localVue = createLocalVue();

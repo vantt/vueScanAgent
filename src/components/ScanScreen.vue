@@ -23,10 +23,10 @@
   </v-container>
 </template>
 
-<script>
+<script lang="ts">
 
 import ScanView from "./InstascanView";
-import {ScanHistory} from "@/core/ScanHistory";
+import {ScanHistory} from "@/domain/model/ScanHistory.ts";
 //import ScanView from "./VueQrcodeReaderView";
 
 export default {

@@ -16,7 +16,7 @@ Vue.use(Toasted, { position: "top-center" });
 Vue.config.productionTip = false;
 Vue.axios.defaults.baseURL = config.baseUrl;
 
-const store = createStore();
+const store = createStore(null);
 
 new Vue({
     router,
