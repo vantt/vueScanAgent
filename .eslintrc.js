@@ -8,6 +8,8 @@ module.exports = {
     extends: [
         "eslint:recommended",
         "plugin:vue/essential",
+        "@vue/typescript/recommended",
+        "@vue/prettier/@typescript-eslint"
     ],
 
     rules: {
@@ -17,7 +19,8 @@ module.exports = {
     },
 
     parserOptions: {
-        parser: "babel-eslint"
+        //parser: "babel-eslint"
+        "parser": "@typescript-eslint/parser"
     },
 
     overrides: [

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import { createStore } from "./store";
+import { createStore } from "./store/store";
 import "./registerServiceWorker";
 import vuetify from "./plugins/vuetify";
 import Toasted from "vue-toasted";

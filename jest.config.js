@@ -4,7 +4,8 @@ module.exports = {
     testEnvironment: 'jsdom',
     transform: {
         "^.+\\.vue$": "vue-jest",
-        "^.+\\js$": "babel-jest"
+        "^.+\\js$": "babel-jest",
+        "^.+\\.tsx?$": "ts-jest"
     },
     moduleFileExtensions: ['vue', 'js', 'json', 'jsx', 'ts', 'tsx', 'node'],
     moduleNameMapper: {
