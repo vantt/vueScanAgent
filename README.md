@@ -120,6 +120,8 @@ ffmpeg -i oldfile.mp4 newfile.mjpeg
 google-chrome --use-fake-device-for-media-stream --use-file-for-fake-video-capture=newfile.mjpeg
 
 https://trackingjs.com/examples/face_camera.html
+
+chrome.exe --use-fake-device-for-media-stream --use-file-for-fake-video-capture="D:\Test\Video\y4m.y4m"
 ```
 
 ```javascript

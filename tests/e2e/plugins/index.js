@@ -13,7 +13,8 @@ module.exports = (on, config) => {
     on('before:browser:launch', (browser = {}, launchOptions) => {
         if (browser.family === 'chromium' && browser.name !== 'electron') {
             // Mac/Linux
-            launchOptions.args.push('--use-file-for-fake-video-capture=tests/e2e/fixtures/sample.mjpeg')
+            //launchOptions.args.push('--use-file-for-fake-video-capture=tests/e2e/fixtures/sample.mjpeg')
+            launchOptions.args.push('--use-file-for-fake-video-capture=tests/e2e/fixtures/sample_qr_1213343634.mjpeg')
 
             // Windows
             // launchOptions.args.push('--use-file-for-fake-video-capture=c:\\path\\to\\video\\my-video.y4m')

@@ -12,11 +12,13 @@ export class ScanAction {
       this.code = code;
       this.label = label;
       this.link = link;
-      this.autoRescan = autoRescan ?? true ;
+      this.autoRescan = autoRescan;
   }
 
-  getRealUrl(scanContent: string): string {
-      return this.link.replace(`/${SCANCONTENT_PLACEHOLDER}/`, encodeURIComponent(scanContent));
+  public getRealUrl(scanContent: string): string {
+      const url = this.link.replace(`/${SCANCONTENT_PLACEHOLDER}/`, encodeURIComponent(scanContent));
+      console.log(url);
+      return url;
   }
 
   isValid(): boolean {

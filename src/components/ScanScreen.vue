@@ -1,20 +1,20 @@
 <template>
   <v-container fluid>
     <v-row id="preview-container" justify="center" dense no-gutters v-show="isShowCamera">
-      <ScanView @onDecode="onDecode" :showCamera="isShowCamera"/>
+      <ScanView @onDecode="onDecode" :showCamera="isShowCamera" data-test="camera" />
     </v-row>
 
     <v-row justify="center" dense no-gutters v-if="isShowContent">
       <v-responsive :aspect-ratio="9/16" max-width="500px">
-        <iframe :src="autoLoadUrl" width="100%" height="100%" style="overflow:hidden" scrolling="no"></iframe>
+        <iframe :src="autoLoadUrl" width="100%" height="100%" style="overflow:hidden" scrolling="no" data-test="external-content"></iframe>
       </v-responsive>
 
       <v-bottom-navigation fixed>
-        <v-btn text color="green">
+        <v-btn text color="green" data-test="scan-content">
           {{ lastContent }}
         </v-btn>
 
-        <v-btn text @click="startScan()">
+        <v-btn text @click="startScan()" data-test="btn-continue-scan">
           <v-icon>mdi-qrcode</v-icon>
           <span>Continue</span>
         </v-btn>
