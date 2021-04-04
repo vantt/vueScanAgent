@@ -16,9 +16,7 @@ export class ScanAction {
   }
 
   public getRealUrl(scanContent: string): string {
-      const url = this.link.replace(`/${SCANCONTENT_PLACEHOLDER}/`, encodeURIComponent(scanContent));
-      console.log(url);
-      return url;
+      return this.link.replace(SCANCONTENT_PLACEHOLDER, encodeURIComponent(scanContent));
   }
 
   isValid(): boolean {

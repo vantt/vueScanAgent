@@ -13,6 +13,15 @@ export const actions = {
         commit('copyScanAction', payload);
     },
 
+    resetDefaultScanActions ( { commit }, payload: { randomSeed: string }): void {
+        // this.$http.get("/config/defaultScanActions.json").then((response) => {
+        //     this.$store.commit("replaceScanActions", response.data);
+        //     const scanActions:ScanAction[] = [];
+        //     commit('replaceScanActions', scanActions);
+        // });
+    },
+
+
     // async connectDb({commit}, ipfsAddress) {
     //     return new Promise((resolve, reject) => {
     //         replicator.connect(ipfsAddress).then((result) => {

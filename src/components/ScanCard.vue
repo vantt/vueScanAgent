@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import {ScanAction} from "@/domain/model/ScanAction.ts";
+import {ScanAction} from "@/domain/model/ScanAction";
 
 export default {
     name: "ScanCard",
@@ -28,5 +28,3 @@ export default {
     }
 }
 </script>
-
-<style></style>

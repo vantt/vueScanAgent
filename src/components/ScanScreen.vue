@@ -26,7 +26,8 @@
 <script lang="ts">
 
 import ScanView from "./InstascanView";
-import {ScanHistory} from "@/domain/model/ScanHistory.ts";
+import {ScanHistory} from "@/domain/model/ScanHistory";
+import { ScanAction } from "@/domain/model/ScanAction";
 //import ScanView from "./VueQrcodeReaderView";
 
 export default {
@@ -94,7 +95,7 @@ export default {
     },
 
     computed: {
-        scanAction() {
+        scanAction(): ScanAction {
             return this.$store.getters.getScanActionByCode(this.actionCode);
         }
     }

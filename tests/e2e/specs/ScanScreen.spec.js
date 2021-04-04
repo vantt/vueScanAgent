@@ -46,7 +46,7 @@ describe('ScanScreen screen, behaves correctly', () => {
         cy.wait(5000);
         cy.get('[data-test="scan-content"]').should('contain.text', '1213343634');
         cy.get('[data-test="external-content"]').should('be.visible');
-        //cy.get('[data-test="external-content"]').its('src').should('equal', 'https://127.0.0.1:8443/admin/qr-check/nestle?key=1213343634&activityName=CheckIn&recept=Uyen');
+        cy.get('[data-test="external-content"]').its('src').should('equal', 'https://127.0.0.1:8443/admin/qr-check/nestle?key=1213343634&activityName=CheckIn&recept=Uyen');
     })
 
     it('When QR code detected, click on Continue button, will start Camera', () => {

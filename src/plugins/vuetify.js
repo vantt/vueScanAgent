@@ -7,8 +7,10 @@ import Vuetify from 'vuetify/lib';
 
 Vue.use(Vuetify);
 
-export default new Vuetify({
+const opts = {
     icons: {
         iconfont: 'mdiSvg || md || fa || mdi',
     },
-});
+}
+
+export default new Vuetify(opts);

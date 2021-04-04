@@ -82,9 +82,7 @@ export default {
     methods: {
         resetStoreToDefaultScanActions() {
             this.randomSeed = Math.random().toString(36).substr(2, 9);
-            this.$http.get("/config/defaultScanActions.json").then((response) => {
-                this.$store.commit("replaceScanActions", response.data);
-            });
+            this.$store.dispatch('resetDefaultScanActions', {randomSeed: this.randomSeed})
         }
     }
 };
