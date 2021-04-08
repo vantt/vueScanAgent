@@ -1,5 +1,5 @@
-import { mutations } from '@/store/mutations'
-import { IState } from "@/store/state";
+import { mutations } from '@/app/store/mutations'
+import { IState } from "@/app/store/state";
 import { ScanAction } from "@/domain/model/ScanAction";
 import { mockScanAction1, mockScanAction2, mockScanAction3, mockScanActions } from "./fixtures/mockScanActions";
 import {mockScanHistory1, mockScanHistory2} from "./fixtures/mockScanHistory";

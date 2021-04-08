@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import TopMenu from "@/components/TopMenu";
+import TopMenu from "@/app/components/TopMenu";
 
 export default {
     name: 'App',

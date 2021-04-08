@@ -1,14 +1,14 @@
 import { Vue } from 'vue-property-decorator'
-import App from "./App.vue";
-import router from "./router";
-import { createStore } from "./store/store";
-import "./registerServiceWorker";
-import vuetify from "./plugins/vuetify";
+import App from "./app/App.vue";
+import router from "./app/router";
+import { createStore } from "./app/store/store";
+import "./app/registerServiceWorker";
+import vuetify from "./app/plugins/vuetify";
 import Toasted from "vue-toasted";
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueQrcode from '@chenfengyuan/vue-qrcode';
-import {config} from "./config/config";
+import {config} from "./app/config/config";
 import buildDependencyContainer from './container'
 
 

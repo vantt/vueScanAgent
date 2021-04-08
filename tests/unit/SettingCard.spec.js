@@ -1,7 +1,7 @@
 import {mount, createLocalVue} from "@vue/test-utils";
 import Vuetify from "vuetify";
 import VueRouter from "vue-router";
-import SettingCard from "@/components/SettingCard";
+import SettingCard from "@/app/components/SettingCard";
 import {ScanAction} from "@/domain/model/ScanAction.ts";
 
 const mockScanAction = new ScanAction(

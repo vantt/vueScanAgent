@@ -25,7 +25,7 @@
 
 <script lang="ts">
 
-import ScanView from "./InstascanView";
+import ScanView from "./InstascanView.vue";
 import {ScanHistory} from "@/domain/model/ScanHistory";
 import { ScanAction } from "@/domain/model/ScanAction";
 //import ScanView from "./VueQrcodeReaderView";

@@ -53,7 +53,7 @@ export default {
     },
 
     mounted() {
-        this.audio = new Audio(require('@/assets/beep.mp3'));
+        this.audio = new Audio(require('@/app/assets/beep.mp3'));
         this.audio.load();
     },
 

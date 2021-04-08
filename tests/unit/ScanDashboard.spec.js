@@ -2,9 +2,9 @@ import { mount, createLocalVue } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import Vuex from "vuex";
 import { mockScanActions } from "./fixtures/mockScanActions";
-import { createStore } from "@/store/store.ts";
+import { createStore } from "@/app/store/store.ts";
 import VueRouter from "vue-router";
-import ScanDashboard from "@/components/ScanDashboard";
+import ScanDashboard from "@/app/components/ScanDashboard";
 
 const createComponent = () => {
     const localVue = createLocalVue();

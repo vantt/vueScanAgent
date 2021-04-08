@@ -57,7 +57,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import SettingCard from "@/components/SettingCard";
+import SettingCard from "@/app/components/SettingCard";
 
 export default {
     name: "Settings",

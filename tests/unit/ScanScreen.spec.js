@@ -1,10 +1,10 @@
 import {mount, shallowMount, createLocalVue} from "@vue/test-utils";
 import Vuetify from "vuetify";
 import VueRouter from "vue-router";
-import ScanScreen from "@/components/ScanScreen";
+import ScanScreen from "@/app/components/ScanScreen";
 import {mockScanAction1, mockScanActions} from "./fixtures/mockScanActions";
-import {createStore} from "@/store/store.ts";
-import router from "@/router";
+import {createStore} from "@/app/store/store.ts";
+import router from "@/app/router";
 
 const mediaDevicesMock = {
     enumerateDevices: jest.fn(),

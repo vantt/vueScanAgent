@@ -51,7 +51,7 @@ export default {
         let self = this;
         const isMobile = this.isMobile();
 
-        self.audio = new Audio(require('@/assets/beep.mp3'));
+        self.audio = new Audio(require('@/app/assets/beep.mp3'));
         self.audio.load();
 
         self.scanner = new Instascan.Scanner({

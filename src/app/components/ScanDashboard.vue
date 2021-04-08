@@ -18,7 +18,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import ScanCard from "@/components/ScanCard";
+import ScanCard from "@/app/components/ScanCard";
 
 export default {
     name: "ScanDashboard",

@@ -1,4 +1,4 @@
-import {actions} from "@/store/actions";
+import {actions} from "@/app/store/actions";
 import {mockScanAction1} from "./fixtures/mockScanActions";
 
 describe("Store Actions", () => {

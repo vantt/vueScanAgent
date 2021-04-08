@@ -1,8 +1,8 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuetify from "vuetify";
 import Vuex from "vuex";
-import router from "@/router";
-import App from "@/App";
+import router from "@/app/router";
+import App from "@/app/App";
 
 const createComponent = () => {
     const localVue = createLocalVue();

@@ -1,5 +1,5 @@
-import { getters } from '@/store/getters'
-import { IState } from "@/store/state";
+import { getters } from '@/app/store/getters'
+import { IState } from "@/app/store/state";
 import { mockScanActions, mockScanAction1 } from "./fixtures/mockScanActions";
 import {mockScanHistories} from "./fixtures/mockScanHistory";
 

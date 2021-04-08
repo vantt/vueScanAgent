@@ -1,12 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import createPersistedState from "vuex-persistedstate";
-import defaultScanActions from "@/config/defaultScanActions.json";
+import defaultScanActions from "@/app/config/defaultScanActions.json";
 import { ScanAction } from "@/domain/model/ScanAction";
-import { IState, initState } from "@/store/state";
-import { getters } from "@/store/getters";
-import { actions } from "@/store/actions";
-import { mutations } from "@/store/mutations";
+import { IState, initState } from "@/app/store/state";
+import { getters } from "@/app/store/getters";
+import { actions } from "@/app/store/actions";
+import { mutations } from "@/app/store/mutations";
 
 Vue.use(Vuex);
 

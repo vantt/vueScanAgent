@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuetify from "vuetify";
-import router from "@/router";
-import TopMenu from "@/components/TopMenu";
+import router from "@/app/router";
+import TopMenu from "@/app/components/TopMenu";
 
 const createComponent = () => {
     const localVue = createLocalVue();

@@ -1,6 +1,6 @@
 import { ScanAction } from "@/domain/model/ScanAction";
 import { ScanHistory } from "@/domain/model/ScanHistory";
-import { IState} from "@/store/state";
+import { IState} from "@/app/store/state";
 
 export const mutations = {
     removeScanAction(state: IState, payload: { code: string }): void {

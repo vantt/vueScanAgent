@@ -1,5 +1,5 @@
 import { ScanAction } from "@/domain/model/ScanAction";
-import { IState } from "@/store/state";
+import { IState } from "@/app/store/state";
 
 export const getters = {
     allScanHistories: (state: IState ) => {

@@ -50,7 +50,7 @@
 
 <script>
 import {mapGetters} from 'vuex';
-import {FormData} from "@/core/FormData";
+import {FormData} from "@/app/core/FormData";
 import {ScanAction} from "@/domain/model/ScanAction.ts";
 
 export default {
